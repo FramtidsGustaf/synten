@@ -1,0 +1,21 @@
+.groupWrapper {
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+}
+
+.radio {
+	&:checked + label {
+		background-color: var(--light);
+		color: var(--dark);
+	}
+}
+
+.label {
+	border-radius: var(--xs);
+	padding: var(--xs) var(--sm);
+	background-color: var(--dark);
+	color: var(--light);
+	display: inline-block;
+	cursor: pointer;
+}

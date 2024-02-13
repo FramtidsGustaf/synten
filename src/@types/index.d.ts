@@ -1,0 +1,1 @@
+type StereoChannel = "left" | "right";

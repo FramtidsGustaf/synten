@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&display=swap");
+
+:root {
+	background-color: var(--bg-color);
+	--bg-color: #6a8b94;
+	--light: #bacacf;
+	--dark: #2a3133;
+	--light-transparent: rgba(186, 202, 207, 0.5);
+	--dark-transparent: rgba(42, 49, 51, 0.5);
+
+	--xs: 0.8rem;
+	--sm: 1.6rem;
+	--md: 2.2rem;
+	--lg: 3rem;
+	--xl: 3.8rem;
+
+	color: var(--dark);
+	font-family: "Ballo Baijaan 2", sans-serif;
+	font-optical-sizing: auto;
+}
