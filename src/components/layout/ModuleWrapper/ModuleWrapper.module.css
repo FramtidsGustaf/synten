@@ -1,9 +1,0 @@
-.moduleWrapper {
-	display: flex;
-	flex-direction: column;
-	border: 5px solid var(--dark);
-	border-radius: var(--lg);
-	padding: var(--sm);
-	width: 36rem;
-	height: fit-content;
-}

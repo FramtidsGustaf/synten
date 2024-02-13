@@ -44,7 +44,7 @@ const Noise = () => {
 				onChange={noise.setNoiseFilterType}
 				value={noise.noiseFilterType.value}
 			/>
-			<VerticalSpace h={theme.xs} />
+			<VerticalSpace h={theme.sm} />
 			<Slider
 				label="FREKVENS"
 				min={0}

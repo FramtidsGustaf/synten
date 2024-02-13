@@ -17,7 +17,7 @@ function App() {
 
 			<Switch>
 				<Route path="/" component={LandingPage} />
-				<Route path="/synth" component={SynthPage} />
+				<Route path="/synt" component={SynthPage} />
 			</Switch>
 		</>
 	);

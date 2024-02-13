@@ -1,5 +1,18 @@
 .modules {
-	padding: 0 var(--xs);
 	display: flex;
-	justify-content: space-between;
+	gap: var(--lg);
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.firstRow {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--lg);
+}
+
+.effects {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--lg);
 }

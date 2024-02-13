@@ -1,0 +1,4 @@
+.delaySidesWrapper {
+	display: flex;
+	gap: var(--xs);
+}

@@ -7,7 +7,7 @@ const LandingPage = () => {
 	const location = useLocation();
 	const handleClick = () => {
 		synth.value = new Synth();
-		location[1]("/synth");
+		location[1]("/synt");
 	};
 
 	return (

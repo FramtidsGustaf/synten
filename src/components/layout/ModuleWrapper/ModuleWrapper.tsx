@@ -1,6 +1,6 @@
-import { useTheme } from "../../../hooks/useTheme";
 import VerticalSpace from "../VerticalSpace/VerticalSpace";
-import classes from "./ModuleWrapper.module.css";
+
+import { useTheme } from "../../../hooks/useTheme";
 
 interface ModuleWrapperProps {
 	children: React.ReactNode;
@@ -11,7 +11,7 @@ const ModuleWrapper = ({ children, label }: ModuleWrapperProps) => {
 	const theme = useTheme();
 
 	return (
-		<div className={classes.moduleWrapper}>
+		<div>
 			<h2>{label}</h2>
 			<VerticalSpace h={theme.sm} />
 			{children}
