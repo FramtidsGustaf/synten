@@ -13,6 +13,7 @@ export class Synth {
 	private filter = new Filter(this.context);
 	private delay = new StereoDelay(this.context);
 	private stereoReverb = new StereoReverb(this.context);
+	analyser = this.context.createAnalyser();
 
 	private currentVoices = new Map<number, Voice[]>();
 	private currentNoise = new Map<number, Noise>();
@@ -84,6 +85,8 @@ export class Synth {
 
 		this.filter.connect(this.stereoReverb.input);
 		this.stereoReverb.connect(this.master);
+
+		this.master.connect(this.analyser);
 
 		// this.filter.connect(this.compressor.compressor);
 		// this.compressor.connect(this.master);
@@ -211,6 +214,14 @@ export class Synth {
 
 	setNoiseFilterFreq(value: number) {
 		this.noiseData.filter.frequency = value;
+	}
+
+	setNoiseFilterQ(value: number) {
+		this.noiseData.filter.Q = value;
+	}
+
+	setNoiseFilterType(value: BiquadFilterType) {
+		this.noiseData.filter.type = value;
 	}
 
 	//---Master setters---

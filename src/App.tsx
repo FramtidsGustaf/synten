@@ -1,13 +1,18 @@
 import { Route, Switch } from "wouter";
-import classes from "./App.module.css";
+
 import { LandingPage } from "./Pages/Landing";
 import SynthPage from "./Pages/Synth/SynthPage";
+
+import { Visualizer } from "./components/Visualizer";
+
+import classes from "./App.module.css";
 
 function App() {
 	return (
 		<>
 			<div className={classes.header}>
-				<h1>SYNT</h1>
+				<h1>SYNTEN</h1>
+				<Visualizer />
 			</div>
 
 			<Switch>

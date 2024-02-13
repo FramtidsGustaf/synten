@@ -5,6 +5,9 @@ export const useTheme = () => {
 		md: "2.2rem",
 		lg: "3rem",
 		xl: "3.8rem",
+		bgColor: "#6a8b94",
+		dark: "#2a3133",
+		light: "#bacacf",
 	};
 
 	return theme;

@@ -2,7 +2,7 @@ import { Signal, effect, signal } from "@preact/signals-react";
 import { ChangeEvent } from "react";
 import { synth } from "./Synth.store";
 
-export const Osc = (oscNumber: number) => {
+export const OscStore = (oscNumber: number) => {
 	const waveform: Signal<OscillatorType> = signal("sine");
 	const detune: Signal<number> = signal(0);
 	const volume: Signal<number> = signal(0.2);
@@ -90,6 +90,6 @@ export const Osc = (oscNumber: number) => {
 	};
 };
 
-export const oscOne = Osc(0);
-export const oscTwo = Osc(1);
-export const oscThree = Osc(2);
+export const oscOne = OscStore(0);
+export const oscTwo = OscStore(1);
+export const oscThree = OscStore(2);

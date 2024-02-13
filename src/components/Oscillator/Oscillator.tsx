@@ -1,36 +1,18 @@
 import { useTheme } from "../../hooks/useTheme";
-import { Osc } from "../../store/Osc.store";
+import { OscStore } from "../../store/Osc.store";
 import { ModuleWrapper } from "../layout/ModuleWrapper";
 import VerticalSpace from "../layout/VerticalSpace/VerticalSpace";
 import { Group } from "../ui/Group";
 import Slider from "../ui/Slider/Slider";
+import { waveforms } from "../../utils/waveforms";
 
 interface OscillatorProps {
 	id: string;
-	osc: ReturnType<typeof Osc>;
+	osc: ReturnType<typeof OscStore>;
 }
 
 const Oscillator = ({ id, osc }: OscillatorProps) => {
 	const theme = useTheme();
-
-	const waveforms = [
-		{
-			label: "SINUS",
-			value: "sine",
-		},
-		{
-			label: "FYRKANT",
-			value: "square",
-		},
-		{
-			label: "TREKANT",
-			value: "triangle",
-		},
-		{
-			label: "SÅGTAND",
-			value: "sawtooth",
-		},
-	];
 
 	return (
 		<ModuleWrapper label="OSCILLATOR">

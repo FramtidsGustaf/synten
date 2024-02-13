@@ -13,6 +13,7 @@ import { synth } from "../../store/Synth.store";
 import { Midi } from "../../Synthesizer/Midi";
 
 import classes from "./SynthPage.module.css";
+import { Noise } from "../../components/Noise";
 
 const SynthPage = () => {
 	const theme = useTheme();
@@ -23,17 +24,28 @@ const SynthPage = () => {
 	}, []);
 
 	return (
-		<div className={classes.modules}>
-			<Oscillator osc={oscOne} id="oscillator-1" />
-			<Oscillator osc={oscTwo} id="oscillator-2" />
-			<Oscillator osc={oscThree} id="oscollator-3" />
-			<div>
-				<Filter />
-				<VerticalSpace h={theme.xs} />
-				<Delay />
+		<>
+			<div className={classes.modules}>
+				<Oscillator osc={oscOne} id="oscillator-1" />
+				<Oscillator osc={oscTwo} id="oscillator-2" />
+				<Oscillator osc={oscThree} id="oscollator-3" />
+				<Noise />
+				<div>
+					<Filter />
+					<VerticalSpace h={theme.xs} />
+					<Delay />
+				</div>
+				<Reverb />
 			</div>
-			<Reverb />
-		</div>
+			<button
+				onClick={() => {
+					synth.value?.play(100);
+				}}
+			>
+				{" "}
+				hejsan
+			</button>
+		</>
 	);
 };
 

@@ -1,18 +1,5 @@
 import { useTheme } from "../../hooks/useTheme";
-import {
-	leftDelayFeedback,
-	leftDelayTime,
-	leftDelayVolume,
-	rightDelayFeedback,
-	rightDelayTime,
-	rightDelayVolume,
-	setLeftDelayFeedback,
-	setLeftDelayTime,
-	setLeftDelayVolume,
-	setRightDelayFeedback,
-	setRightDelayTime,
-	setRightDelayVolume,
-} from "../../store/Delay.store";
+import * as delay from "../../store/Delay.store";
 import { ModuleWrapper } from "../layout/ModuleWrapper";
 import VerticalSpace from "../layout/VerticalSpace/VerticalSpace";
 import Slider from "../ui/Slider/Slider";
@@ -26,23 +13,23 @@ const Delay = () => {
 			<Slider
 				min={0}
 				max={10}
-				onChange={setLeftDelayTime}
+				onChange={delay.setLeftDelayTime}
 				label="TID"
-				value={leftDelayTime.value}
+				value={delay.leftDelayTime.value}
 			/>
 			<Slider
 				min={0}
 				max={10}
-				onChange={setLeftDelayFeedback}
+				onChange={delay.setLeftDelayFeedback}
 				label="RESPONS"
-				value={leftDelayFeedback.value}
+				value={delay.leftDelayFeedback.value}
 			/>
 			<Slider
 				min={0}
 				max={1}
-				onChange={setLeftDelayVolume}
+				onChange={delay.setLeftDelayVolume}
 				label="VOLYM"
-				value={leftDelayVolume.value}
+				value={delay.leftDelayVolume.value}
 			/>
 			<VerticalSpace h={theme.sm} />
 			<h3>HÖGER</h3>
@@ -50,23 +37,23 @@ const Delay = () => {
 			<Slider
 				min={0}
 				max={10}
-				onChange={setRightDelayTime}
+				onChange={delay.setRightDelayTime}
 				label="TID"
-				value={rightDelayTime.value}
+				value={delay.rightDelayTime.value}
 			/>
 			<Slider
 				min={0}
 				max={10}
-				onChange={setRightDelayFeedback}
+				onChange={delay.setRightDelayFeedback}
 				label="RESPONS"
-				value={rightDelayFeedback.value}
+				value={delay.rightDelayFeedback.value}
 			/>
 			<Slider
 				min={0}
 				max={1}
-				onChange={setRightDelayVolume}
+				onChange={delay.setRightDelayVolume}
 				label="VOLYM"
-				value={rightDelayVolume.value}
+				value={delay.rightDelayVolume.value}
 			/>
 		</ModuleWrapper>
 	);

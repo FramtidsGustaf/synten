@@ -1,58 +1,38 @@
-import { useTheme } from "../../hooks/useTheme";
-import {
-	filterFreq,
-	filterQ,
-	filterType,
-	setFilterFreq,
-	setFilterQ,
-	setFilterType,
-} from "../../store/Filter.store";
 import { ModuleWrapper } from "../layout/ModuleWrapper";
 import VerticalSpace from "../layout/VerticalSpace/VerticalSpace";
 import { Group } from "../ui/Group";
 import Slider from "../ui/Slider/Slider";
+import { filterVariants } from "../../utils/filterVariants";
+
+import { useTheme } from "../../hooks/useTheme";
+
+import * as filter from "../../store/Filter.store";
 
 const Filter = () => {
 	const theme = useTheme();
-
-	const filterTypes = [
-		{
-			label: "LÅGPASS",
-			value: "lowpass",
-		},
-		{
-			label: "HÖGPASS",
-			value: "highpass",
-		},
-		{
-			label: "BANDPASS",
-			value: "bandpass",
-		},
-	];
 
 	return (
 		<ModuleWrapper label="FILTER">
 			<Group
 				id="filters"
-				data={filterTypes}
-				onChange={setFilterType}
-				value={filterType.value}
+				data={filterVariants}
+				onChange={filter.setFilterType}
+				value={filter.filterType.value}
 			/>
 			<VerticalSpace h={theme.sm} />
 			<Slider
 				min={0}
 				max={3000}
-				onChange={setFilterFreq}
+				onChange={filter.setFilterFreq}
 				label="FREKVENS"
-				value={filterFreq.value}
+				value={filter.filterFreq.value}
 			/>
-			{/* <VerticalSpace h={theme.sm} /> */}
 			<Slider
 				min={0}
 				max={100}
-				onChange={setFilterQ}
+				onChange={filter.setFilterQ}
 				label="TOPP"
-				value={filterQ.value}
+				value={filter.filterQ.value}
 			/>
 		</ModuleWrapper>
 	);

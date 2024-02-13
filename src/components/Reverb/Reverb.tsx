@@ -1,34 +1,10 @@
 import { useTheme } from "../../hooks/useTheme";
-import {
-	leftReverbDecay,
-	leftReverbDuration,
-	leftReverbFilterFreq,
-	leftReverbFilterQ,
-	leftReverbFilterType,
-	leftReverbVolume,
-	rightReverbDecay,
-	rightReverbDuration,
-	rightReverbFilterFreq,
-	rightReverbFilterQ,
-	rightReverbFilterType,
-	rightReverbVolume,
-	setLeftReverbDecay,
-	setLeftReverbDuration,
-	setLeftReverbFilterFreq,
-	setLeftReverbFilterQ,
-	setLeftReverbFilterType,
-	setLeftReverbVolume,
-	setRightReverbDecay,
-	setRightReverbDuration,
-	setRightReverbFilterFreq,
-	setRightReverbFilterQ,
-	setRightReverbFilterType,
-	setRightReverbVolume,
-} from "../../store/Reverb.store";
+import * as reverb from "../../store/Reverb.store";
 import { ModuleWrapper } from "../layout/ModuleWrapper";
 import VerticalSpace from "../layout/VerticalSpace/VerticalSpace";
 import { Group } from "../ui/Group";
 import Slider from "../ui/Slider/Slider";
+import { filterVariants } from "../../utils/filterVariants";
 
 const Reverb = () => {
 	const theme = useTheme();
@@ -39,60 +15,47 @@ const Reverb = () => {
 			<Slider
 				min={1}
 				max={10}
-				onChange={setLeftReverbDuration}
+				onChange={reverb.setLeftReverbDuration}
 				label="TID"
-				value={leftReverbDuration.value}
+				value={reverb.leftReverbDuration.value}
 			/>
 			<Slider
 				min={0}
 				max={20}
-				onChange={setLeftReverbDecay}
+				onChange={reverb.setLeftReverbDecay}
 				label="FÖRFALL"
-				value={leftReverbDecay.value}
+				value={reverb.leftReverbDecay.value}
 			/>
 			<Slider
 				min={0}
 				max={1}
-				onChange={setLeftReverbVolume}
+				onChange={reverb.setLeftReverbVolume}
 				label="VOLYM"
-				value={leftReverbVolume.value}
+				value={reverb.leftReverbVolume.value}
 			/>
 			<VerticalSpace h={theme.xs} />
 			<h4>FILTER</h4>
 			<VerticalSpace h={theme.xs} />
 			<Group
 				id="reverb-filter-left"
-				data={[
-					{
-						label: "LÅG PASS",
-						value: "lowpass",
-					},
-					{
-						label: "HÖG PASS",
-						value: "highpass",
-					},
-					{
-						label: "BAND PASS",
-						value: "bandpass",
-					},
-				]}
-				value={leftReverbFilterType.value}
-				onChange={setLeftReverbFilterType}
+				data={filterVariants}
+				value={reverb.leftReverbFilterType.value}
+				onChange={reverb.setLeftReverbFilterType}
 			/>
 			<VerticalSpace h={theme.xs} />
 			<Slider
 				min={0}
 				max={3000}
-				onChange={setLeftReverbFilterFreq}
+				onChange={reverb.setLeftReverbFilterFreq}
 				label="FREKVENS"
-				value={leftReverbFilterFreq.value}
+				value={reverb.leftReverbFilterFreq.value}
 			/>
 			<Slider
 				min={0}
 				max={10}
-				onChange={setLeftReverbFilterQ}
+				onChange={reverb.setLeftReverbFilterQ}
 				label="TOPP"
-				value={leftReverbFilterQ.value}
+				value={reverb.leftReverbFilterQ.value}
 			/>
 			<VerticalSpace h={theme.sm} />
 			<h3>HÖGER</h3>
@@ -100,60 +63,47 @@ const Reverb = () => {
 			<Slider
 				min={1}
 				max={10}
-				onChange={setRightReverbDuration}
+				onChange={reverb.setRightReverbDuration}
 				label="TID"
-				value={rightReverbDuration.value}
+				value={reverb.rightReverbDuration.value}
 			/>
 			<Slider
 				min={0}
 				max={20}
-				onChange={setRightReverbDecay}
+				onChange={reverb.setRightReverbDecay}
 				label="FÖRFALL"
-				value={rightReverbDecay.value}
+				value={reverb.rightReverbDecay.value}
 			/>
 			<Slider
 				min={0}
 				max={1}
-				onChange={setRightReverbVolume}
+				onChange={reverb.setRightReverbVolume}
 				label="VOLYM"
-				value={rightReverbVolume.value}
+				value={reverb.rightReverbVolume.value}
 			/>
 			<VerticalSpace h={theme.xs} />
 			<h4>FILTER</h4>
 			<VerticalSpace h={theme.xs} />
 			<Group
 				id="reverb-filter-right"
-				data={[
-					{
-						label: "LÅG PASS",
-						value: "lowpass",
-					},
-					{
-						label: "HÖG PASS",
-						value: "highpass",
-					},
-					{
-						label: "BAND PASS",
-						value: "bandpass",
-					},
-				]}
-				value={rightReverbFilterType.value}
-				onChange={setRightReverbFilterType}
+				data={filterVariants}
+				value={reverb.rightReverbFilterType.value}
+				onChange={reverb.setRightReverbFilterType}
 			/>
 			<VerticalSpace h={theme.xs} />
 			<Slider
 				min={0}
 				max={3000}
-				onChange={setRightReverbFilterFreq}
+				onChange={reverb.setRightReverbFilterFreq}
 				label="FREKVENS"
-				value={rightReverbFilterFreq.value}
+				value={reverb.rightReverbFilterFreq.value}
 			/>
 			<Slider
 				min={0}
 				max={10}
-				onChange={setRightReverbFilterQ}
+				onChange={reverb.setRightReverbFilterQ}
 				label="TOPP"
-				value={rightReverbFilterQ.value}
+				value={reverb.rightReverbFilterQ.value}
 			/>
 		</ModuleWrapper>
 	);
