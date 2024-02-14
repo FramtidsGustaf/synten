@@ -1,5 +1,4 @@
 import { Signal, effect, signal } from "@preact/signals-react";
-import { ChangeEvent } from "react";
 import { synth } from "./Synth.store";
 
 export const leftDelayTime: Signal<number> = signal(0);
@@ -10,28 +9,28 @@ export const rightDelayTime: Signal<number> = signal(0);
 export const rightDelayFeedback: Signal<number> = signal(0);
 export const rightDelayVolume: Signal<number> = signal(0);
 
-export const setLeftDelayTime = (e: ChangeEvent<HTMLInputElement>) => {
-	leftDelayTime.value = e.target.valueAsNumber;
+export const setLeftDelayTime = (n: number) => {
+	leftDelayTime.value = n;
 };
 
-export const setLeftDelayFeedback = (e: ChangeEvent<HTMLInputElement>) => {
-	leftDelayFeedback.value = e.target.valueAsNumber;
+export const setLeftDelayFeedback = (n: number) => {
+	leftDelayFeedback.value = n;
 };
 
-export const setLeftDelayVolume = (e: ChangeEvent<HTMLInputElement>) => {
-	leftDelayVolume.value = e.target.valueAsNumber;
+export const setLeftDelayVolume = (n: number) => {
+	leftDelayVolume.value = n;
 };
 
-export const setRightDelayTime = (e: ChangeEvent<HTMLInputElement>) => {
-	rightDelayTime.value = e.target.valueAsNumber;
+export const setRightDelayTime = (n: number) => {
+	rightDelayTime.value = n;
 };
 
-export const setRightDelayFeedback = (e: ChangeEvent<HTMLInputElement>) => {
-	rightDelayFeedback.value = e.target.valueAsNumber;
+export const setRightDelayFeedback = (n: number) => {
+	rightDelayFeedback.value = n;
 };
 
-export const setRightDelayVolume = (e: ChangeEvent<HTMLInputElement>) => {
-	rightDelayVolume.value = e.target.valueAsNumber;
+export const setRightDelayVolume = (n: number) => {
+	rightDelayVolume.value = n;
 };
 
 effect(() => {

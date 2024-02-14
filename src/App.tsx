@@ -1,7 +1,7 @@
 import { Route, Switch } from "wouter";
 
 import { LandingPage } from "./Pages/Landing";
-import SynthPage from "./Pages/Synth/SynthPage";
+import { SynthPage } from "./Pages/Synth";
 
 import { Visualizer } from "./components/Visualizer";
 

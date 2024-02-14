@@ -13,7 +13,6 @@ export class Synth {
 	private filter = new Filter(this.context);
 	private delay = new StereoDelay(this.context);
 	private stereoReverb = new StereoReverb(this.context);
-	analyser = this.context.createAnalyser();
 
 	private currentVoices = new Map<number, Voice[]>();
 	private currentNoise = new Map<number, Noise>();
@@ -23,6 +22,8 @@ export class Synth {
 	private noiseData = new NoiseData();
 
 	private compressor = new Compressor(this.context);
+
+	analyser = this.context.createAnalyser();
 
 	constructor() {
 		this.master.connect(this.context.destination);
@@ -196,6 +197,38 @@ export class Synth {
 
 	setVoiceVibratoDepth(voice: number, value: number) {
 		this.voiceData[voice].setVibratoDepth(value);
+	}
+
+	setVoiceVibratoDelay(voice: number, value: number) {
+		this.voiceData[voice].setVibratoDelay(value);
+	}
+
+	setVoiceVibratoType(voice: number, value: OscillatorType) {
+		this.voiceData[voice].setVibratoType(value);
+	}
+
+	setVoiceFilterStartFreq(voice: number, value: number) {
+		this.voiceData[voice].setStartFreq(value);
+	}
+
+	setVoiceFilterEndFreq(voice: number, value: number) {
+		this.voiceData[voice].setEndFreq(value);
+	}
+
+	setVoiceFilterQ(voice: number, value: number) {
+		this.voiceData[voice].setFilterQ(value);
+	}
+
+	setVoiceFilterType(voice: number, value: BiquadFilterType) {
+		this.voiceData[voice].setFilterType(value);
+	}
+
+	setVoiceFilterAttackTime(voice: number, value: number) {
+		this.voiceData[voice].setAttackTime(value);
+	}
+
+	setVoiceFilterReleaseTime(voice: number, value: number) {
+		this.voiceData[voice].setReleaseTime(value);
 	}
 
 	//---Noise setters---

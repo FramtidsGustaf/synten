@@ -18,21 +18,21 @@ const Noise = () => {
 				min={0}
 				max={1}
 				label="VOLYM"
-				onChange={noise.setNoiseVolume}
+				onChange={(e) => noise.setNoiseVolume(e.target.valueAsNumber)}
 				value={noise.noiseVolume.value}
 			/>
 			<Slider
 				min={0}
 				max={10}
 				label="ATTACK"
-				onChange={noise.setNoiseAttack}
+				onChange={(e) => noise.setNoiseAttack(e.target.valueAsNumber)}
 				value={noise.noiseAttack.value}
 			/>
 			<Slider
 				min={0}
 				max={10}
 				label="SLÄPP"
-				onChange={noise.setNoiseRelease}
+				onChange={(e) => noise.setNoiseRelease(e.target.valueAsNumber)}
 				value={noise.noiseRelease.value}
 			/>
 			<VerticalSpace h={theme.sm} />
@@ -41,7 +41,9 @@ const Noise = () => {
 			<Group
 				id="noise"
 				data={filterVariants}
-				onChange={noise.setNoiseFilterType}
+				onChange={(e) =>
+					noise.setNoiseFilterType(e.target.value as BiquadFilterType)
+				}
 				value={noise.noiseFilterType.value}
 			/>
 			<VerticalSpace h={theme.sm} />
@@ -49,14 +51,14 @@ const Noise = () => {
 				label="FREKVENS"
 				min={0}
 				max={3000}
-				onChange={noise.setNoiseFilterFreq}
+				onChange={(e) => noise.setNoiseFilterFreq(e.target.valueAsNumber)}
 				value={noise.noiseFilterFreq.value}
 			/>
 			<Slider
 				label="TOPP"
 				min={0}
 				max={10}
-				onChange={noise.setNoiseFilterQ}
+				onChange={(e) => noise.setNoiseFilterQ(e.target.valueAsNumber)}
 				value={noise.noiseFilterQ.value}
 			/>
 		</ModuleWrapper>

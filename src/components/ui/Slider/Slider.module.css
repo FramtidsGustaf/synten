@@ -1,7 +1,7 @@
 .slider {
 	appearance: none;
 	width: 100%;
-	height: var(--lg);
+	height: var(--md);
 	background: var(--dark);
 	outline: none;
 	border-radius: 100px;
@@ -11,8 +11,8 @@
 	&::-webkit-slider-thumb {
 		-webkit-appearance: none;
 		appearance: none;
-		width: var(--md);
-		height: var(--md);
+		width: var(--sm);
+		height: var(--sm);
 		background: var(--bg-color);
 		border-radius: 50%;
 		transition: all 0.1s ease-in-out;

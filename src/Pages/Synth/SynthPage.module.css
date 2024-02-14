@@ -9,10 +9,12 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: var(--lg);
+	justify-content: center;
 }
 
 .effects {
 	display: flex;
 	flex-wrap: wrap;
 	gap: var(--lg);
+	justify-content: center;
 }

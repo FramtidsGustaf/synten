@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useLocation } from "wouter";
 
 import { Filter } from "../../components/Filter";
 import { Delay } from "../../components/Delay";
@@ -10,27 +11,49 @@ import { oscOne, oscTwo, oscThree } from "../../store/Osc.store";
 import { synth } from "../../store/Synth.store";
 
 import { Midi } from "../../Synthesizer/Midi";
+import { initDB } from "../../db/initDB";
 
 import classes from "./SynthPage.module.css";
 
 const SynthPage = () => {
+	const location = useLocation();
 	useEffect(() => {
+		initDB();
 		if (!synth.value) return;
 		new Midi(synth.value);
 	}, []);
 
+	useEffect(() => {
+		if (!synth.value) {
+			location[1]("/");
+		}
+	}, [synth.value]);
+
+	const play = () => {
+		if (!synth.value) return;
+		synth.value.play(200);
+	};
+
+	const stop = () => {
+		if (!synth.value) return;
+		synth.value.stop(200);
+	};
+
 	return (
 		<div className={classes.modules}>
 			<div className={classes.firstRow}>
-				<Oscillator osc={oscOne} id="oscillator-1" />
-				<Oscillator osc={oscTwo} id="oscillator-2" />
-				<Oscillator osc={oscThree} id="oscollator-3" />
+				<Oscillator osc={oscOne} id="oscillator-1" label="OSCILLATOR ETT" />
+				<Oscillator osc={oscTwo} id="oscillator-2" label="OSCILLATOR TVÅ" />
+				<Oscillator osc={oscThree} id="oscollator-3" label="OSCILLATOR TRE" />
 				<Noise />
-				<Filter />
 			</div>
 			<div className={classes.effects}>
+				<Filter />
 				<Delay />
 				<Reverb />
+				<button onMouseDown={play} onMouseUp={stop}>
+					Spela
+				</button>
 			</div>
 		</div>
 	);

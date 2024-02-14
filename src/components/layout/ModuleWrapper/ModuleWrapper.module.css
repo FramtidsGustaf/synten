@@ -1,0 +1,4 @@
+.label {
+	width: fit-content;
+	border-bottom: 2px solid var(--dark);
+}

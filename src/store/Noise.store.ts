@@ -1,6 +1,5 @@
 import { Signal, effect, signal } from "@preact/signals-react";
 import { synth } from "./Synth.store";
-import { ChangeEvent } from "react";
 
 export const noiseVolume: Signal<number> = signal(0);
 export const noiseAttack: Signal<number> = signal(0);
@@ -9,28 +8,28 @@ export const noiseFilterType: Signal<BiquadFilterType> = signal("lowpass");
 export const noiseFilterFreq: Signal<number> = signal(0);
 export const noiseFilterQ: Signal<number> = signal(0);
 
-export const setNoiseVolume = (e: ChangeEvent<HTMLInputElement>) => {
-	noiseVolume.value = e.target.valueAsNumber;
+export const setNoiseVolume = (n: number) => {
+	noiseVolume.value = n;
 };
 
-export const setNoiseAttack = (e: ChangeEvent<HTMLInputElement>) => {
-	noiseAttack.value = e.target.valueAsNumber;
+export const setNoiseAttack = (n: number) => {
+	noiseAttack.value = n;
 };
 
-export const setNoiseRelease = (e: ChangeEvent<HTMLInputElement>) => {
-	noiseRelease.value = e.target.valueAsNumber;
+export const setNoiseRelease = (n: number) => {
+	noiseRelease.value = n;
 };
 
-export const setNoiseFilterType = (e: ChangeEvent<HTMLFormElement>) => {
-	noiseFilterType.value = e.target.value;
+export const setNoiseFilterType = (f: BiquadFilterType) => {
+	noiseFilterType.value = f;
 };
 
-export const setNoiseFilterFreq = (e: ChangeEvent<HTMLInputElement>) => {
-	noiseFilterFreq.value = e.target.valueAsNumber;
+export const setNoiseFilterFreq = (n: number) => {
+	noiseFilterFreq.value = n;
 };
 
-export const setNoiseFilterQ = (e: ChangeEvent<HTMLInputElement>) => {
-	noiseFilterQ.value = e.target.valueAsNumber;
+export const setNoiseFilterQ = (n: number) => {
+	noiseFilterQ.value = n;
 };
 
 effect(() => {

@@ -19,21 +19,21 @@ const Delay = () => {
 					<Slider
 						min={0}
 						max={10}
-						onChange={delay.setLeftDelayTime}
+						onChange={(e) => delay.setLeftDelayTime(e.target.valueAsNumber)}
 						label="TID"
 						value={delay.leftDelayTime.value}
 					/>
 					<Slider
 						min={0}
 						max={10}
-						onChange={delay.setLeftDelayFeedback}
+						onChange={(e) => delay.setLeftDelayFeedback(e.target.valueAsNumber)}
 						label="RESPONS"
 						value={delay.leftDelayFeedback.value}
 					/>
 					<Slider
 						min={0}
 						max={1}
-						onChange={delay.setLeftDelayVolume}
+						onChange={(e) => delay.setLeftDelayVolume(e.target.valueAsNumber)}
 						label="VOLYM"
 						value={delay.leftDelayVolume.value}
 					/>
@@ -44,21 +44,23 @@ const Delay = () => {
 					<Slider
 						min={0}
 						max={10}
-						onChange={delay.setRightDelayTime}
+						onChange={(e) => delay.setRightDelayTime(e.target.valueAsNumber)}
 						label="TID"
 						value={delay.rightDelayTime.value}
 					/>
 					<Slider
 						min={0}
 						max={10}
-						onChange={delay.setRightDelayFeedback}
+						onChange={(e) =>
+							delay.setRightDelayFeedback(e.target.valueAsNumber)
+						}
 						label="RESPONS"
 						value={delay.rightDelayFeedback.value}
 					/>
 					<Slider
 						min={0}
 						max={1}
-						onChange={delay.setRightDelayVolume}
+						onChange={(e) => delay.setRightDelayVolume(e.target.valueAsNumber)}
 						label="VOLYM"
 						value={delay.rightDelayVolume.value}
 					/>

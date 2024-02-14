@@ -1,12 +1,12 @@
-import { Vibrato } from "./Vibrato";
+import { LFO } from "./LFO";
 
 export class DCO extends OscillatorNode {
-	vibrato: Vibrato;
+	lfo: LFO;
 	constructor(context: AudioContext) {
 		super(context);
 
-		this.vibrato = new Vibrato(context);
-		this.connect(this.vibrato.input);
+		this.lfo = new LFO(context);
+		this.lfo.connect(this.detune);
 	}
 
 	freq(freq: number) {
@@ -18,18 +18,22 @@ export class DCO extends OscillatorNode {
 	}
 
 	setVibratoFreq(value: number) {
-		this.vibrato.setFrequency(value);
+		this.lfo.setFrequency(value);
 	}
 
 	setVibratoDepth(value: number) {
-		this.vibrato.setDepth(value);
+		this.lfo.setDepth(value);
 	}
 
 	setDetune(value: number) {
 		this.detune.value = value;
 	}
 
-	_connect(destination: AudioNode) {
-		this.vibrato.connect(destination);
+	setVibratoDelay(value: number) {
+		this.lfo.setDelay(value);
+	}
+
+	setVibratoType(type: OscillatorType) {
+		this.lfo.setType(type);
 	}
 }

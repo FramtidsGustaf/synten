@@ -1,7 +1,10 @@
 import { useLocation } from "wouter";
 import { synth } from "../../store/Synth.store";
 import { Synth } from "../../Synthesizer/Synth";
-import { Button } from "../../components/ui/Button";
+
+import syntOnButton from "../../assets/synt-on-button.svg";
+
+import classes from "./LandingPage.module.css";
 
 const LandingPage = () => {
 	const location = useLocation();
@@ -12,7 +15,12 @@ const LandingPage = () => {
 
 	return (
 		<div>
-			<Button onClick={handleClick}>Till Synten</Button>
+			<img
+				src={syntOnButton}
+				alt="Synt On Button"
+				className={classes.onButton}
+				onClick={handleClick}
+			/>
 		</div>
 	);
 };

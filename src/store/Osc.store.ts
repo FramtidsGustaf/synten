@@ -1,5 +1,4 @@
 import { Signal, effect, signal } from "@preact/signals-react";
-import { ChangeEvent } from "react";
 import { synth } from "./Synth.store";
 
 export const OscStore = (oscNumber: number) => {
@@ -8,40 +7,106 @@ export const OscStore = (oscNumber: number) => {
 	const volume: Signal<number> = signal(0.2);
 	const attack: Signal<number> = signal(0);
 	const release: Signal<number> = signal(0.4);
-	const filterFreq: Signal<number> = signal(2000);
-	const filterQ: Signal<number> = signal(0);
-	const filterAttack: Signal<number> = signal(0);
-	const filterRelease: Signal<number> = signal(0.4);
 	const vibratoFreq: Signal<number> = signal(0);
 	const vibratoDepth: Signal<number> = signal(0);
+	const vibratoDelay: Signal<number> = signal(0);
+	const vibratoType: Signal<OscillatorType> = signal("sine");
+	const filterType: Signal<BiquadFilterType> = signal("lowpass");
+	const filterStartFreq: Signal<number> = signal(20000);
+	const filterEndFreq: Signal<number> = signal(20000);
+	const filterAttackTime: Signal<number> = signal(0.001);
+	const filterReleaseTime: Signal<number> = signal(0.001);
+	const filterQ: Signal<number> = signal(0);
 
-	const setWaveform = (e: ChangeEvent<HTMLFormElement>) => {
-		waveform.value = e.target.value as OscillatorType;
+	const setWaveform = (o: OscillatorType) => {
+		waveform.value = o;
 	};
 
-	const setDetune = (e: ChangeEvent<HTMLInputElement>) => {
-		detune.value = e.target.valueAsNumber;
+	const setDetune = (n: number) => {
+		detune.value = n;
 	};
 
-	const setVolume = (e: ChangeEvent<HTMLInputElement>) => {
-		volume.value = e.target.valueAsNumber;
+	const setVolume = (n: number) => {
+		volume.value = n;
 	};
 
-	const setAttack = (e: ChangeEvent<HTMLInputElement>) => {
-		attack.value = e.target.valueAsNumber;
+	const setAttack = (n: number) => {
+		attack.value = n;
 	};
 
-	const setRelease = (e: ChangeEvent<HTMLInputElement>) => {
-		release.value = e.target.valueAsNumber;
+	const setRelease = (n: number) => {
+		release.value = n;
 	};
 
-	const setVibratoFreq = (e: ChangeEvent<HTMLInputElement>) => {
-		vibratoFreq.value = e.target.valueAsNumber;
+	const setVibratoFreq = (n: number) => {
+		vibratoFreq.value = n;
 	};
 
-	const setVibratoDepth = (e: ChangeEvent<HTMLInputElement>) => {
-		vibratoDepth.value = e.target.valueAsNumber;
+	const setVibratoDepth = (n: number) => {
+		vibratoDepth.value = n;
 	};
+
+	const setVibratoDelay = (n: number) => {
+		vibratoDelay.value = n;
+	};
+
+	const setVibratoType = (o: OscillatorType) => {
+		vibratoType.value = o;
+	};
+
+	const setFilterType = (o: BiquadFilterType) => {
+		filterType.value = o;
+	};
+
+	const setFilterStartFreq = (n: number) => {
+		filterStartFreq.value = n;
+	};
+
+	const setFilterEndFreq = (n: number) => {
+		filterEndFreq.value = n;
+	};
+
+	const setFilterAttackTime = (n: number) => {
+		filterAttackTime.value = n;
+	};
+
+	const setFilterReleaseTime = (n: number) => {
+		filterReleaseTime.value = n;
+	};
+
+	const setFilterQ = (n: number) => {
+		filterQ.value = n;
+	};
+
+	effect(() => {
+		if (!synth.value) return;
+		synth.value.setVoiceFilterType(oscNumber, filterType.value);
+	});
+
+	effect(() => {
+		if (!synth.value) return;
+		synth.value.setVoiceFilterStartFreq(oscNumber, filterStartFreq.value);
+	});
+
+	effect(() => {
+		if (!synth.value) return;
+		synth.value.setVoiceFilterEndFreq(oscNumber, filterEndFreq.value);
+	});
+
+	effect(() => {
+		if (!synth.value) return;
+		synth.value.setVoiceFilterQ(oscNumber, filterQ.value);
+	});
+
+	effect(() => {
+		if (!synth.value) return;
+		synth.value.setVoiceFilterAttackTime(oscNumber, filterAttackTime.value);
+	});
+
+	effect(() => {
+		if (!synth.value) return;
+		synth.value.setVoiceFilterReleaseTime(oscNumber, filterReleaseTime.value);
+	});
 
 	effect(() => {
 		if (!synth.value) return;
@@ -68,18 +133,42 @@ export const OscStore = (oscNumber: number) => {
 		synth.value.setVoiceRelease(oscNumber, release.value);
 	});
 
+	effect(() => {
+		if (!synth.value) return;
+		synth.value.setVoiceVibratoFreq(oscNumber, vibratoFreq.value);
+	});
+
+	effect(() => {
+		if (!synth.value) return;
+		synth.value.setVoiceVibratoDepth(oscNumber, vibratoDepth.value);
+	});
+
+	effect(() => {
+		if (!synth.value) return;
+		synth.value.setVoiceVibratoDelay(oscNumber, vibratoDelay.value);
+	});
+
+	effect(() => {
+		if (!synth.value) return;
+		synth.value.setVoiceVibratoType(oscNumber, vibratoType.value);
+	});
+
 	return {
 		waveform,
 		detune,
 		volume,
 		attack,
 		release,
-		filterFreq,
-		filterQ,
-		filterAttack,
-		filterRelease,
 		vibratoFreq,
 		vibratoDepth,
+		vibratoDelay,
+		vibratoType,
+		filterType,
+		filterStartFreq,
+		filterEndFreq,
+		filterAttackTime,
+		filterReleaseTime,
+		filterQ,
 		setWaveform,
 		setDetune,
 		setVolume,
@@ -87,6 +176,14 @@ export const OscStore = (oscNumber: number) => {
 		setRelease,
 		setVibratoFreq,
 		setVibratoDepth,
+		setVibratoDelay,
+		setVibratoType,
+		setFilterType,
+		setFilterStartFreq,
+		setFilterEndFreq,
+		setFilterAttackTime,
+		setFilterReleaseTime,
+		setFilterQ,
 	};
 };
 

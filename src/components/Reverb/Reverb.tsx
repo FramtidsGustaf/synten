@@ -21,21 +21,23 @@ const Reverb = () => {
 					<Slider
 						min={1}
 						max={10}
-						onChange={reverb.setLeftReverbDuration}
+						onChange={(e) =>
+							reverb.setLeftReverbDuration(e.target.valueAsNumber)
+						}
 						label="TID"
 						value={reverb.leftReverbDuration.value}
 					/>
 					<Slider
 						min={0}
 						max={20}
-						onChange={reverb.setLeftReverbDecay}
+						onChange={(e) => reverb.setLeftReverbDecay(e.target.valueAsNumber)}
 						label="FÖRFALL"
 						value={reverb.leftReverbDecay.value}
 					/>
 					<Slider
 						min={0}
 						max={1}
-						onChange={reverb.setLeftReverbVolume}
+						onChange={(e) => reverb.setLeftReverbVolume(e.target.valueAsNumber)}
 						label="VOLYM"
 						value={reverb.leftReverbVolume.value}
 					/>
@@ -46,20 +48,26 @@ const Reverb = () => {
 						id="reverb-filter-left"
 						data={filterVariants}
 						value={reverb.leftReverbFilterType.value}
-						onChange={reverb.setLeftReverbFilterType}
+						onChange={(e) =>
+							reverb.setLeftReverbFilterType(e.target.value as BiquadFilterType)
+						}
 					/>
 					<VerticalSpace h={theme.sm} />
 					<Slider
 						min={0}
 						max={3000}
-						onChange={reverb.setLeftReverbFilterFreq}
+						onChange={(e) =>
+							reverb.setLeftReverbFilterFreq(e.target.valueAsNumber)
+						}
 						label="FREKVENS"
 						value={reverb.leftReverbFilterFreq.value}
 					/>
 					<Slider
 						min={0}
 						max={10}
-						onChange={reverb.setLeftReverbFilterQ}
+						onChange={(e) =>
+							reverb.setLeftReverbFilterQ(e.target.valueAsNumber)
+						}
 						label="TOPP"
 						value={reverb.leftReverbFilterQ.value}
 					/>
@@ -71,21 +79,25 @@ const Reverb = () => {
 					<Slider
 						min={1}
 						max={10}
-						onChange={reverb.setRightReverbDuration}
+						onChange={(e) =>
+							reverb.setRightReverbDuration(e.target.valueAsNumber)
+						}
 						label="TID"
 						value={reverb.rightReverbDuration.value}
 					/>
 					<Slider
 						min={0}
 						max={20}
-						onChange={reverb.setRightReverbDecay}
+						onChange={(e) => reverb.setRightReverbDecay(e.target.valueAsNumber)}
 						label="FÖRFALL"
 						value={reverb.rightReverbDecay.value}
 					/>
 					<Slider
 						min={0}
 						max={1}
-						onChange={reverb.setRightReverbVolume}
+						onChange={(e) =>
+							reverb.setRightReverbVolume(e.target.valueAsNumber)
+						}
 						label="VOLYM"
 						value={reverb.rightReverbVolume.value}
 					/>
@@ -96,20 +108,28 @@ const Reverb = () => {
 						id="reverb-filter-right"
 						data={filterVariants}
 						value={reverb.rightReverbFilterType.value}
-						onChange={reverb.setRightReverbFilterType}
+						onChange={(e) =>
+							reverb.setRightReverbFilterType(
+								e.target.value as BiquadFilterType
+							)
+						}
 					/>
 					<VerticalSpace h={theme.sm} />
 					<Slider
 						min={0}
 						max={3000}
-						onChange={reverb.setRightReverbFilterFreq}
+						onChange={(e) =>
+							reverb.setRightReverbFilterFreq(e.target.valueAsNumber)
+						}
 						label="FREKVENS"
 						value={reverb.rightReverbFilterFreq.value}
 					/>
 					<Slider
 						min={0}
 						max={10}
-						onChange={reverb.setRightReverbFilterQ}
+						onChange={(e) =>
+							reverb.setRightReverbFilterQ(e.target.valueAsNumber)
+						}
 						label="TOPP"
 						value={reverb.rightReverbFilterQ.value}
 					/>
