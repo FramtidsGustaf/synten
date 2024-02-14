@@ -1,5 +1,4 @@
 import { Compressor } from "./Compressor";
-import { Filter } from "./Filter";
 import { Noise } from "./Noise";
 import { NoiseData } from "./NoiseData";
 import { StereoDelay } from "./StereoDelay";
@@ -10,7 +9,6 @@ import { VoiceData } from "./VoiceData";
 export class Synth {
 	private context = new AudioContext();
 	private master = this.context.createGain();
-	private filter = new Filter(this.context);
 	private delay = new StereoDelay(this.context);
 	private stereoReverb = new StereoReverb(this.context);
 
@@ -68,23 +66,31 @@ export class Synth {
 		const voiceTwo = new Voice(this.context, this.voiceData[1], freq);
 		const voiceThree = new Voice(this.context, this.voiceData[2], freq);
 
-		voiceOne.connect(this.filter.filter);
-		voiceTwo.connect(this.filter.filter);
-		voiceThree.connect(this.filter.filter);
+		voiceOne.connect(this.master);
+		voiceTwo.connect(this.master);
+		voiceThree.connect(this.master);
 
 		this.currentVoices.set(freq, [voiceOne, voiceTwo, voiceThree]);
 
 		const noise = new Noise(this.context, this.noiseData);
 		this.currentNoise.set(freq, noise);
 
-		noise.connect(this.filter.filter);
+		noise.connect(this.master);
 
-		this.filter.connect(this.master);
+		voiceOne.connect(this.delay.input);
+		voiceTwo.connect(this.delay.input);
+		voiceThree.connect(this.delay.input);
 
-		this.filter.connect(this.delay.input);
+		noise.connect(this.delay.input);
+
+		voiceOne.connect(this.stereoReverb.input);
+		voiceTwo.connect(this.stereoReverb.input);
+		voiceThree.connect(this.stereoReverb.input);
+
+		noise.connect(this.stereoReverb.input);
+
 		this.delay.connect(this.master);
 
-		this.filter.connect(this.stereoReverb.input);
 		this.stereoReverb.connect(this.master);
 
 		this.master.connect(this.analyser);
@@ -117,20 +123,6 @@ export class Synth {
 
 	setReverbDecay(value: number, side: StereoChannel) {
 		this.stereoReverb.setReverbDecay(value, side);
-	}
-
-	//---Filter setters---
-
-	setFilterFreq(value: number) {
-		this.filter.setFrequency(value);
-	}
-
-	setFilterQ(value: number) {
-		this.filter.setQ(value);
-	}
-
-	setFilterType(value: BiquadFilterType) {
-		this.filter.setType(value);
 	}
 
 	//---Delay setters---

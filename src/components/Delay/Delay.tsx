@@ -18,14 +18,14 @@ const Delay = () => {
 					<VerticalSpace h={theme.xs} />
 					<Slider
 						min={0}
-						max={10}
+						max={2}
 						onChange={(e) => delay.setLeftDelayTime(e.target.valueAsNumber)}
 						label="TID"
 						value={delay.leftDelayTime.value}
 					/>
 					<Slider
 						min={0}
-						max={10}
+						max={1}
 						onChange={(e) => delay.setLeftDelayFeedback(e.target.valueAsNumber)}
 						label="RESPONS"
 						value={delay.leftDelayFeedback.value}
@@ -43,14 +43,14 @@ const Delay = () => {
 					<VerticalSpace h={theme.xs} />
 					<Slider
 						min={0}
-						max={10}
+						max={2}
 						onChange={(e) => delay.setRightDelayTime(e.target.valueAsNumber)}
 						label="TID"
 						value={delay.rightDelayTime.value}
 					/>
 					<Slider
 						min={0}
-						max={10}
+						max={1}
 						onChange={(e) =>
 							delay.setRightDelayFeedback(e.target.valueAsNumber)
 						}

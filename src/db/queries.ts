@@ -1,5 +1,4 @@
 import * as noise from "../store/Noise.store";
-import * as filter from "../store/Filter.store";
 import * as delay from "../store/Delay.store";
 import * as reverb from "../store/Reverb.store";
 import { oscOne, oscThree, oscTwo } from "../store/Osc.store";
@@ -23,6 +22,12 @@ export const getSynth = (name: string) => {
 			oscOne.setVibratoFreq(s.oscOne.vibratoFreq);
 			oscOne.setVolume(s.oscOne.volume);
 			oscOne.setWaveform(s.oscOne.waveform);
+			oscOne.setFilterStartFreq(s.oscOne.filterStartFreq);
+			oscOne.setFilterEndFreq(s.oscOne.filterEndFreq);
+			oscOne.setFilterQ(s.oscOne.filterQ);
+			oscOne.setFilterType(s.oscOne.filterType);
+			oscOne.setFilterAttackTime(s.oscOne.filterAttack);
+			oscOne.setFilterReleaseTime(s.oscOne.filterRelease);
 
 			oscTwo.setAttack(s.oscTwo.attack);
 			oscTwo.setDetune(s.oscTwo.detune);
@@ -31,6 +36,12 @@ export const getSynth = (name: string) => {
 			oscTwo.setVibratoFreq(s.oscTwo.vibratoFreq);
 			oscTwo.setVolume(s.oscTwo.volume);
 			oscTwo.setWaveform(s.oscTwo.waveform);
+			oscTwo.setFilterStartFreq(s.oscTwo.filterStartFreq);
+			oscTwo.setFilterEndFreq(s.oscTwo.filterEndFreq);
+			oscTwo.setFilterQ(s.oscTwo.filterQ);
+			oscTwo.setFilterType(s.oscTwo.filterType);
+			oscTwo.setFilterAttackTime(s.oscTwo.filterAttack);
+			oscTwo.setFilterReleaseTime(s.oscTwo.filterRelease);
 
 			oscThree.setAttack(s.oscThree.attack);
 			oscThree.setDetune(s.oscThree.detune);
@@ -39,6 +50,12 @@ export const getSynth = (name: string) => {
 			oscThree.setVibratoFreq(s.oscThree.vibratoFreq);
 			oscThree.setVolume(s.oscThree.volume);
 			oscThree.setWaveform(s.oscThree.waveform);
+			oscThree.setFilterStartFreq(s.oscThree.filterStartFreq);
+			oscThree.setFilterEndFreq(s.oscThree.filterEndFreq);
+			oscThree.setFilterQ(s.oscThree.filterQ);
+			oscThree.setFilterType(s.oscThree.filterType);
+			oscThree.setFilterAttackTime(s.oscThree.filterAttack);
+			oscThree.setFilterReleaseTime(s.oscThree.filterRelease);
 
 			noise.setNoiseAttack(s.noise.noiseAttack);
 			noise.setNoiseFilterFreq(s.noise.noiseFilterFreq);
@@ -46,10 +63,6 @@ export const getSynth = (name: string) => {
 			noise.setNoiseFilterType(s.noise.noiseFilterType);
 			noise.setNoiseRelease(s.noise.noiseRelease);
 			noise.setNoiseVolume(s.noise.noiseVolume);
-
-			filter.setFilterFreq(s.filter.filterFreq);
-			filter.setFilterQ(s.filter.filterQ);
-			filter.setFilterType(s.filter.filterType);
 
 			delay.setLeftDelayFeedback(s.delay.left.feedback);
 			delay.setLeftDelayTime(s.delay.left.time);
@@ -88,6 +101,12 @@ export const saveSynth = (name: string) => {
 			release: oscOne.release.value,
 			vibratoFreq: oscOne.vibratoFreq.value,
 			vibratoDepth: oscOne.vibratoDepth.value,
+			filterStartFreq: oscOne.filterStartFreq.value,
+			filterEndFreq: oscOne.filterEndFreq.value,
+			filterQ: oscOne.filterQ.value,
+			filterType: oscOne.filterType.value,
+			filterAttack: oscOne.filterAttackTime.value,
+			filterRelease: oscOne.filterReleaseTime.value,
 		},
 		oscTwo: {
 			waveform: oscTwo.waveform.value,
@@ -97,6 +116,12 @@ export const saveSynth = (name: string) => {
 			release: oscTwo.release.value,
 			vibratoFreq: oscTwo.vibratoFreq.value,
 			vibratoDepth: oscTwo.vibratoDepth.value,
+			filterStartFreq: oscTwo.filterStartFreq.value,
+			filterEndFreq: oscTwo.filterEndFreq.value,
+			filterQ: oscTwo.filterQ.value,
+			filterType: oscTwo.filterType.value,
+			filterAttack: oscTwo.filterAttackTime.value,
+			filterRelease: oscTwo.filterReleaseTime.value,
 		},
 		oscThree: {
 			waveform: oscThree.waveform.value,
@@ -106,6 +131,12 @@ export const saveSynth = (name: string) => {
 			release: oscThree.release.value,
 			vibratoFreq: oscThree.vibratoFreq.value,
 			vibratoDepth: oscThree.vibratoDepth.value,
+			filterStartFreq: oscThree.filterStartFreq.value,
+			filterEndFreq: oscThree.filterEndFreq.value,
+			filterQ: oscThree.filterQ.value,
+			filterType: oscThree.filterType.value,
+			filterAttack: oscThree.filterAttackTime.value,
+			filterRelease: oscThree.filterReleaseTime.value,
 		},
 		noise: {
 			noiseVolume: noise.noiseVolume.value,
@@ -114,11 +145,6 @@ export const saveSynth = (name: string) => {
 			noiseFilterType: noise.noiseFilterType.value,
 			noiseFilterFreq: noise.noiseFilterType.value,
 			noiseFilterQ: noise.noiseFilterType.value,
-		},
-		filter: {
-			filterType: filter.filterType.value,
-			filterFreq: filter.filterFreq.value,
-			filterQ: filter.filterQ.value,
 		},
 		delay: {
 			left: {
@@ -155,8 +181,35 @@ export const saveSynth = (name: string) => {
 	request.onsuccess = () => {
 		const db = request.result;
 		const transaction = db.transaction("synth", "readwrite");
-		const synthStore = transaction.objectStore("synth");
+		const synthStore = transaction.objectStore("presets");
 
 		synthStore.put({ id: name, synth });
+	};
+};
+
+export const deleteSynth = (name: string) => {
+	const request = window.indexedDB.open("synth", 1);
+
+	request.onsuccess = () => {
+		const db = request.result;
+		const transaction = db.transaction("synth", "readwrite");
+		const synthStore = transaction.objectStore("synth");
+
+		synthStore.delete(name);
+	};
+};
+
+export const getAllNames = () => {
+	const request = window.indexedDB.open("synth", 1);
+
+	request.onsuccess = () => {
+		const db = request.result;
+		const transaction = db.transaction("synth", "readwrite");
+		const synthStore = transaction.objectStore("synth");
+		const names = synthStore.getAllKeys();
+
+		names.onsuccess = () => {
+			return names.result;
+		};
 	};
 };

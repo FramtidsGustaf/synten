@@ -1,0 +1,52 @@
+.floppy {
+	width: var(--lg);
+	height: var(--lg);
+	cursor: pointer;
+	transition: all 0.1s ease-out;
+}
+
+.input {
+	background-color: var(--color-bg);
+	border: none;
+	outline: none;
+
+	border-bottom: 2px solid var(--dark);
+	color: var(--dark);
+	font-size: var(--sm);
+	font-weight: bold;
+
+	&::placeholder {
+		color: var(--dark);
+	}
+}
+
+.close {
+	width: var(--md);
+	height: var(--md);
+	cursor: pointer;
+	transition: all 0.1s ease-out;
+
+	&:hover {
+		filter: brightness(1.5);
+		transform: scale(1.1);
+	}
+}
+
+.ok {
+	width: var(--md);
+	height: var(--md);
+	cursor: pointer;
+	transition: all 0.1s ease-out;
+
+	&:hover {
+		filter: brightness(1.5);
+		transform: scale(1.1);
+	}
+}
+
+.form {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--xs);
+}

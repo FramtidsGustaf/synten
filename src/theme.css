@@ -3,10 +3,10 @@
 :root {
 	background-color: var(--bg-color);
 	--bg-color: #6a8b94;
+	--bg-color-light: #85aeba;
+	--bg-color-dark: #60818a;
 	--light: #bacacf;
 	--dark: #2a3133;
-	--light-transparent: rgba(186, 202, 207, 0.5);
-	--dark-transparent: rgba(42, 49, 51, 0.5);
 
 	--xs: 0.8rem;
 	--sm: 1.6rem;

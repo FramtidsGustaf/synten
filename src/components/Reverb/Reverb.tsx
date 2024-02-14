@@ -71,7 +71,6 @@ const Reverb = () => {
 						label="TOPP"
 						value={reverb.leftReverbFilterQ.value}
 					/>
-					<VerticalSpace h={theme.sm} />
 				</div>
 				<div>
 					<h3>HÖGER</h3>

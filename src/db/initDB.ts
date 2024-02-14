@@ -4,7 +4,7 @@ export const initDB = () => {
 
 		request.onupgradeneeded = () => {
 			const db = request.result;
-			db.createObjectStore("synth", { keyPath: "id" });
+			db.createObjectStore("presets", { keyPath: "id" });
 		};
 
 		request.onsuccess = () => {
