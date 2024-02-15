@@ -3,9 +3,10 @@ import { OscStore } from "../../store/Osc.store";
 import { ModuleWrapper } from "../layout/ModuleWrapper";
 import VerticalSpace from "../layout/VerticalSpace/VerticalSpace";
 import { Group } from "../ui/Group";
-import Slider from "../ui/Slider/Slider";
 import { waveforms } from "../../utils/waveforms";
 import { filterVariants } from "../../utils/filterVariants";
+import { Knob } from "../ui/Knob";
+import Row from "../layout/Row/Row";
 
 interface OscillatorProps {
 	id: string;
@@ -24,40 +25,53 @@ const Oscillator = ({ id, osc, label }: OscillatorProps) => {
 				data={waveforms}
 				value={osc.waveform.value}
 			/>
-			<VerticalSpace h={theme.sm} />
-			<Slider
+			<VerticalSpace h={theme.xs} />
+			<p>TRANSPONERING</p>
+			<Group
+				id={id + "octave"}
+				data={[
+					{ label: "-2", value: -2 },
+					{ label: "-1", value: -1 },
+					{ label: "0", value: 0 },
+					{ label: "+1", value: 1 },
+					{ label: "+2", value: 2 },
+				]}
+				value={osc.transpositionMultiplier.value}
+				onChange={(e) => osc.setTranspositionMultiplier(e.target.value)}
+			/>
+			<Knob
 				min={-100}
 				max={100}
-				onChange={(e) => osc.setDetune(e.target.valueAsNumber)}
+				onChange={osc.setDetune}
 				label="OSTÄM"
 				value={osc.detune.value}
 			/>
-			<VerticalSpace h={theme.sm} />
 			<h3>FÖRSTÄRKARE</h3>
-			<VerticalSpace h={theme.xs} />
-			<Slider
-				min={0}
-				max={1}
-				onChange={(e) => osc.setVolume(e.target.valueAsNumber)}
-				label="VOLYM"
-				value={osc.volume.value}
-			/>
-			<Slider
-				min={0}
-				max={10}
-				onChange={(e) => osc.setAttack(e.target.valueAsNumber)}
-				label="ATTACK"
-				value={osc.attack.value}
-			/>
-			<Slider
-				min={0}
-				max={10}
-				onChange={(e) => osc.setRelease(e.target.valueAsNumber)}
-				label="SLÄPP"
-				value={osc.release.value}
-			/>
+			<Row>
+				<Knob
+					min={0}
+					max={1}
+					onChange={osc.setVolume}
+					label="VOLYM"
+					value={osc.volume.value}
+				/>
+				<Knob
+					min={0}
+					max={10}
+					onChange={osc.setAttack}
+					label="ATTACK"
+					value={osc.attack.value}
+				/>
+				<Knob
+					min={0}
+					max={10}
+					onChange={osc.setRelease}
+					label="SLÄPP"
+					value={osc.release.value}
+				/>
+			</Row>
 
-			<VerticalSpace h={theme.sm} />
+			<VerticalSpace h={theme.xs} />
 
 			<h3>VIBRATO</h3>
 			<VerticalSpace h={theme.xs} />
@@ -67,29 +81,31 @@ const Oscillator = ({ id, osc, label }: OscillatorProps) => {
 				value={osc.vibratoType.value}
 				id={id + "vibrato"}
 			/>
-			<VerticalSpace h={theme.sm} />
-			<Slider
-				min={0}
-				max={50}
-				onChange={(e) => osc.setVibratoFreq(e.target.valueAsNumber)}
-				label="FREKVENS"
-				value={osc.vibratoFreq.value}
-			/>
-			<Slider
-				min={0}
-				max={100}
-				onChange={(e) => osc.setVibratoDepth(e.target.valueAsNumber)}
-				label="DJUP"
-				value={osc.vibratoDepth.value}
-			/>
-			<Slider
-				min={0}
-				max={10}
-				onChange={(e) => osc.setVibratoDelay(e.target.valueAsNumber)}
-				label="FÖRDRÖJNING"
-				value={osc.vibratoDelay.value}
-			/>
-			<VerticalSpace h={theme.sm} />
+			<VerticalSpace h={theme.xs} />
+			<Row>
+				<Knob
+					min={0}
+					max={50}
+					onChange={osc.setVibratoFreq}
+					label="FREKVENS"
+					value={osc.vibratoFreq.value}
+				/>
+				<Knob
+					min={0}
+					max={100}
+					onChange={osc.setVibratoDepth}
+					label="DJUP"
+					value={osc.vibratoDepth.value}
+				/>
+				<Knob
+					min={0}
+					max={10}
+					onChange={osc.setVibratoDelay}
+					label="NÄR"
+					value={osc.vibratoDelay.value}
+				/>
+			</Row>
+			<VerticalSpace h={theme.xs} />
 			<h3>FÖRÄNDRINGSFILTER</h3>
 			<VerticalSpace h={theme.xs} />
 			<Group
@@ -98,46 +114,48 @@ const Oscillator = ({ id, osc, label }: OscillatorProps) => {
 				value={osc.filterType.value}
 				id={id + "filter"}
 			/>
-			<VerticalSpace h={theme.sm} />
-			<Slider
-				min={0}
-				max={20000}
-				onChange={(e) => osc.setFilterStartFreq(e.target.valueAsNumber)}
-				label="STARTFREKVENS"
-				value={osc.filterStartFreq.value}
-			/>
+			<VerticalSpace h={theme.xs} />
+			<Row>
+				<Knob
+					min={0}
+					max={20000}
+					onChange={osc.setFilterStartFreq}
+					label="START"
+					value={osc.filterStartFreq.value}
+				/>
 
-			<Slider
-				min={0}
-				max={20000}
-				onChange={(e) => osc.setFilterEndFreq(e.target.valueAsNumber)}
-				label="SLUTFREKVENS"
-				value={osc.filterEndFreq.value}
-			/>
+				<Knob
+					min={0}
+					max={20000}
+					onChange={osc.setFilterEndFreq}
+					label="MÅL"
+					value={osc.filterEndFreq.value}
+				/>
 
-			<Slider
-				min={0}
-				max={10}
-				onChange={(e) => osc.setFilterQ(e.target.valueAsNumber)}
-				label="Q"
-				value={osc.filterQ.value}
-			/>
+				<Knob
+					min={0}
+					max={10}
+					onChange={osc.setFilterQ}
+					label="Q"
+					value={osc.filterQ.value}
+				/>
 
-			<Slider
-				min={0}
-				max={10}
-				onChange={(e) => osc.setFilterAttackTime(e.target.valueAsNumber)}
-				label="FÖRÄNDINSTID"
-				value={osc.filterAttackTime.value}
-			/>
+				<Knob
+					min={0}
+					max={10}
+					onChange={osc.setFilterAttackTime}
+					label="TID"
+					value={osc.filterAttackTime.value}
+				/>
 
-			<Slider
-				min={0}
-				max={10}
-				onChange={(e) => osc.setFilterReleaseTime(e.target.valueAsNumber)}
-				label="SLÄPP"
-				value={osc.filterReleaseTime.value}
-			/>
+				<Knob
+					min={0}
+					max={10}
+					onChange={osc.setFilterReleaseTime}
+					label="SLÄPP"
+					value={osc.filterReleaseTime.value}
+				/>
+			</Row>
 		</ModuleWrapper>
 	);
 };

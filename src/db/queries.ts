@@ -2,13 +2,14 @@ import * as noise from "../store/Noise.store";
 import * as delay from "../store/Delay.store";
 import * as reverb from "../store/Reverb.store";
 import { oscOne, oscThree, oscTwo } from "../store/Osc.store";
+import { allSavedPresetsNames } from "../store/Saved.store";
 
 export const getSynth = (name: string) => {
 	const request = window.indexedDB.open("synth", 1);
 
 	request.onsuccess = () => {
 		const db = request.result;
-		const transaction = db.transaction("synth", "readwrite");
+		const transaction = db.transaction("synth", "readonly");
 		const synthStore = transaction.objectStore("synth");
 		const synth = synthStore.get(name);
 
@@ -17,6 +18,7 @@ export const getSynth = (name: string) => {
 
 			oscOne.setAttack(s.oscOne.attack);
 			oscOne.setDetune(s.oscOne.detune);
+			oscOne.setTranspositionMultiplier(s.oscOne.transpositionMultiplier);
 			oscOne.setRelease(s.oscOne.release);
 			oscOne.setVibratoDepth(s.oscOne.vibratoDepth);
 			oscOne.setVibratoFreq(s.oscOne.vibratoFreq);
@@ -31,6 +33,7 @@ export const getSynth = (name: string) => {
 
 			oscTwo.setAttack(s.oscTwo.attack);
 			oscTwo.setDetune(s.oscTwo.detune);
+			oscTwo.setTranspositionMultiplier(s.oscTwo.transpositionMultiplier);
 			oscTwo.setRelease(s.oscTwo.release);
 			oscTwo.setVibratoDepth(s.oscTwo.vibratoDepth);
 			oscTwo.setVibratoFreq(s.oscTwo.vibratoFreq);
@@ -45,6 +48,7 @@ export const getSynth = (name: string) => {
 
 			oscThree.setAttack(s.oscThree.attack);
 			oscThree.setDetune(s.oscThree.detune);
+			oscThree.setTranspositionMultiplier(s.oscThree.transpositionMultiplier);
 			oscThree.setRelease(s.oscThree.release);
 			oscThree.setVibratoDepth(s.oscThree.vibratoDepth);
 			oscThree.setVibratoFreq(s.oscThree.vibratoFreq);
@@ -96,6 +100,7 @@ export const saveSynth = (name: string) => {
 		oscOne: {
 			waveform: oscOne.waveform.value,
 			detune: oscOne.detune.value,
+			transpositionMultiplier: oscOne.transpositionMultiplier.value,
 			volume: oscOne.volume.value,
 			attack: oscOne.attack.value,
 			release: oscOne.release.value,
@@ -111,6 +116,7 @@ export const saveSynth = (name: string) => {
 		oscTwo: {
 			waveform: oscTwo.waveform.value,
 			detune: oscTwo.detune.value,
+			transpositionMultiplier: oscTwo.transpositionMultiplier.value,
 			volume: oscTwo.volume.value,
 			attack: oscTwo.attack.value,
 			release: oscTwo.release.value,
@@ -126,6 +132,7 @@ export const saveSynth = (name: string) => {
 		oscThree: {
 			waveform: oscThree.waveform.value,
 			detune: oscThree.detune.value,
+			transpositionMultiplier: oscThree.transpositionMultiplier.value,
 			volume: oscThree.volume.value,
 			attack: oscThree.attack.value,
 			release: oscThree.release.value,
@@ -143,8 +150,8 @@ export const saveSynth = (name: string) => {
 			noiseAttack: noise.noiseAttack.value,
 			noiseRelease: noise.noiseRelease.value,
 			noiseFilterType: noise.noiseFilterType.value,
-			noiseFilterFreq: noise.noiseFilterType.value,
-			noiseFilterQ: noise.noiseFilterType.value,
+			noiseFilterFreq: noise.noiseFilterFreq.value,
+			noiseFilterQ: noise.noiseFilterQ.value,
 		},
 		delay: {
 			left: {
@@ -180,7 +187,9 @@ export const saveSynth = (name: string) => {
 
 	request.onsuccess = () => {
 		const db = request.result;
-		const transaction = db.transaction("synth", "readwrite");
+		console.log(db);
+
+		const transaction = db.transaction("presets", "readwrite");
 		const synthStore = transaction.objectStore("presets");
 
 		synthStore.put({ id: name, synth });
@@ -204,12 +213,12 @@ export const getAllNames = () => {
 
 	request.onsuccess = () => {
 		const db = request.result;
-		const transaction = db.transaction("synth", "readwrite");
-		const synthStore = transaction.objectStore("synth");
+		const transaction = db.transaction("presets", "readonly");
+		const synthStore = transaction.objectStore("presets");
 		const names = synthStore.getAllKeys();
 
 		names.onsuccess = () => {
-			return names.result;
+			allSavedPresetsNames.value = names.result;
 		};
 	};
 };

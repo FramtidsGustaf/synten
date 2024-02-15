@@ -1,7 +1,7 @@
-import { Visualizer } from "../../Visualizer";
+import { Visualizer } from "../Visualizer";
 
 import classes from "./Header.module.css";
-import Save from "../../Save/Save";
+import Save from "../Save/Save";
 
 const Header = () => {
 	return (

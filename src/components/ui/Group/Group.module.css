@@ -1,6 +1,6 @@
 .groupWrapper {
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: center;
 	flex-wrap: wrap;
 	gap: var(--xs);
 }
@@ -13,7 +13,7 @@
 }
 
 .label {
-	border-radius: var(--xs);
+	border-radius: 5px;
 	padding: var(--xs) var(--sm);
 	background-color: var(--dark);
 	color: var(--light);

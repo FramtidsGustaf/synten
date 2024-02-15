@@ -3,6 +3,7 @@ export const initDB = () => {
 		const request = window.indexedDB.open("synth", 1);
 
 		request.onupgradeneeded = () => {
+			console.log("Upgrading DB")
 			const db = request.result;
 			db.createObjectStore("presets", { keyPath: "id" });
 		};
@@ -17,3 +18,4 @@ export const initDB = () => {
 		};
 	});
 };
+	

@@ -14,6 +14,7 @@ const settingsName: Signal<string> = signal("");
 const Save = () => {
 	const save = () => {
 		saveSynth(settingsName.value);
+		settingsName.value = "";
 		isSaving.value = false;
 	};
 	return (

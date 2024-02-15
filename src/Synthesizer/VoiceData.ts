@@ -7,9 +7,11 @@ export class VoiceData {
 	osc: {
 		type: OscillatorType;
 		detune: number;
+		transpositionMultiplier: number;
 	} = {
 		type: "square",
 		detune: 0,
+		transpositionMultiplier: 0,
 	};
 
 	amp: {
@@ -104,5 +106,9 @@ export class VoiceData {
 
 	setFilterQ(value: number) {
 		this.filter.Q = value;
+	}
+
+	setTranspositionMultiplier(value: number) {
+		this.osc.transpositionMultiplier = value;
 	}
 }

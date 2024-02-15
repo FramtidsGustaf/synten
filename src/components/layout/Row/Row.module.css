@@ -1,4 +1,5 @@
-.delaySidesWrapper {
+.row {
 	display: flex;
 	gap: var(--xs);
+	flex-wrap: wrap;
 }

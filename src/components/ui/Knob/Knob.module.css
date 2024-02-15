@@ -1,0 +1,10 @@
+.knob {
+	width: 40px;
+}
+
+.knobWrapper {
+	padding: var(--xs);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}

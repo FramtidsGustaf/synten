@@ -4,6 +4,7 @@ import { synth } from "./Synth.store";
 export const OscStore = (oscNumber: number) => {
 	const waveform: Signal<OscillatorType> = signal("sine");
 	const detune: Signal<number> = signal(0);
+	const transpositionMultiplier: Signal<number> = signal(0);
 	const volume: Signal<number> = signal(0.2);
 	const attack: Signal<number> = signal(0);
 	const release: Signal<number> = signal(0.4);
@@ -24,6 +25,10 @@ export const OscStore = (oscNumber: number) => {
 
 	const setDetune = (n: number) => {
 		detune.value = n;
+	};
+
+	const setTranspositionMultiplier = (n: number) => {
+		transpositionMultiplier.value = n;
 	};
 
 	const setVolume = (n: number) => {
@@ -120,6 +125,14 @@ export const OscStore = (oscNumber: number) => {
 
 	effect(() => {
 		if (!synth.value) return;
+		synth.value.setVoiceTranspositionMultiplier(
+			oscNumber,
+			transpositionMultiplier.value
+		);
+	});
+
+	effect(() => {
+		if (!synth.value) return;
 		synth.value.setVoiceVolume(oscNumber, volume.value);
 	});
 
@@ -156,6 +169,7 @@ export const OscStore = (oscNumber: number) => {
 	return {
 		waveform,
 		detune,
+		transpositionMultiplier,
 		volume,
 		attack,
 		release,
@@ -171,6 +185,7 @@ export const OscStore = (oscNumber: number) => {
 		filterQ,
 		setWaveform,
 		setDetune,
+		setTranspositionMultiplier,
 		setVolume,
 		setAttack,
 		setRelease,

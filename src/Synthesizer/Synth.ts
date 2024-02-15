@@ -183,6 +183,10 @@ export class Synth {
 		this.voiceData[voice].setDetune(value);
 	}
 
+	setVoiceTranspositionMultiplier(voice: number, value: number) {
+		this.voiceData[voice].setTranspositionMultiplier(value);
+	}
+
 	setVoiceVibratoFreq(voice: number, value: number) {
 		this.voiceData[voice].setVibratoFreq(value);
 	}

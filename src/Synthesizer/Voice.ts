@@ -22,7 +22,10 @@ export class Voice {
 		this.setWaveform(voiceData.osc.type);
 		this.setVolume(voiceData.amp.volume);
 		this.setFreq(freq);
-		this.setDetune(voiceData.osc.detune);
+		this.setDetune(
+			this.calculateTransposition(voiceData.osc.transpositionMultiplier) +
+				voiceData.osc.detune
+		);
 		this.setVibratoFreq(voiceData.modulation.vibratoFreq);
 		this.setVibratoDepth(voiceData.modulation.vibratoDepth);
 		this.setVibratoDelay(voiceData.modulation.vibratoDelay);
@@ -36,6 +39,11 @@ export class Voice {
 		this.setFilterAttackTime(voiceData.filter.attackTime);
 		this.setFilterReleaseTime(voiceData.filter.releaseTime);
 		this.start(context.currentTime);
+	}
+
+	calculateTransposition(transpositionMultiplier: number) {
+		if (transpositionMultiplier === 0) return 0;
+		return 1200 * transpositionMultiplier;
 	}
 
 	setWaveform(type: OscillatorType) {

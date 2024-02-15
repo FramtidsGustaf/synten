@@ -4,14 +4,14 @@ import classes from "./Group.module.css";
 
 interface DataPart {
 	label: string;
-	value: string;
+	value: string | number;
 }
 
 interface GroupProps {
 	data: DataPart[];
 	id: string;
 	onChange: (value: ChangeEvent<HTMLFormElement>) => void;
-	value: string;
+	value: string | number;
 }
 
 const Group = ({ data, id, onChange, value }: GroupProps) => {

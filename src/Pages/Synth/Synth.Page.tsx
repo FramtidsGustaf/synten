@@ -16,6 +16,7 @@ import { initDB } from "../../db/initDB";
 import { useTheme } from "../../hooks/useTheme";
 
 import classes from "./SynthPage.module.css";
+import { getAllNames } from "../../store/Saved.store";
 
 const SynthPage = () => {
 	const location = useLocation();

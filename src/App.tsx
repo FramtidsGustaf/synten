@@ -1,6 +1,6 @@
 import { Route, Switch } from "wouter";
 
-import { Header } from "./components/layout/Header";
+import { Header } from "./components/Header";
 
 import { LandingPage } from "./Pages/Landing";
 import { SynthPage } from "./Pages/Synth";
