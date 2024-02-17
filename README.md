@@ -13,3 +13,4 @@ Jag har inte deployat den än men om vill du testa den kan du klona repot och k�
 > - Kolla över alla reglage. (Min/Max, vissa ger för stort utslag och vissa för litet utslag)
 > - Synk av vissa reglage t.ex. filter på oscillatorerna.
 > - Möjlighet till att nollställa vissa reglage.
+> - Lägga till kuvertfilter till brusmodulen
