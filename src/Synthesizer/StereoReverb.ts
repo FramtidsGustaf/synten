@@ -20,7 +20,7 @@ class Reverb {
 		this.gain.connect(destination);
 	}
 
-	createImpulse() {
+	private createImpulse() {
 		const length = this.context.sampleRate * this.duration;
 		const impulse = this.context.createBuffer(
 			1,

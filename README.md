@@ -1,30 +1,15 @@
-# React + TypeScript + Vite
+# SYNTEN
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Synten är en helt browserbaserad midisynt som är byggd med Web Audio Api. 
 
-Currently, two official plugins are available:
+Jag har inte deployat den än men om vill du testa den kan du klona repot och köra den lokalt.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Att göra
+> - Lista sparade inställningar
+> - Hantera inhämntning av samtycke kring cookies (Är inte helt säker på ifall det behövs rent juridiskt men bättre säker än ledsen.)
+> - Deploya den på github pages och eventuellt köpa ett domännamn (Detta kommer när jag anser att synten är helt klar)
+> - Kontakt för eventuella förslag till förbättringar (Kommer också senare ifall jag bestämmer mig för att skaffa ett domännamn)
+> - Se över koden för att bestämma vilken frekvens midimeddelanden ska ha. (Den skrevs när jag var trött och är inte helt säker på att den stämmer helt)
+> - Kolla över alla reglage. (Min/Max, vissa ger för stort utslag och vissa för litet utslag)
+> - Synk av vissa reglage t.ex. filter på oscillatorerna.
+> - Möjlighet till att nollställa vissa reglage.
