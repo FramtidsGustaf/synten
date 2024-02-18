@@ -8,14 +8,20 @@ export class NoiseData {
 	};
 	filter: {
 		type: BiquadFilterType;
-		frequency: number;
+		startFreq: number;
+		endFreq: number;
+		attackTime: number;
+		releaseTime: number;
 		Q: number;
 	};
 
 	constructor() {
 		this.filter = {
 			type: "highpass",
-			frequency: 2000,
+			startFreq: 20000,
+			endFreq: 20000,
+			attackTime: 0.001,
+			releaseTime: 0.001,
 			Q: 0,
 		};
 	}
@@ -36,8 +42,20 @@ export class NoiseData {
 		this.filter.type = value;
 	}
 
-	setFilterFrequency(value: number) {
-		this.filter.frequency = value;
+	setFilterStartFreq(value: number) {
+		this.filter.startFreq = value;
+	}
+
+	setFilterEndFreq(value: number) {
+		this.filter.endFreq = value;
+	}
+
+	setFilterAttackTime(value: number) {
+		this.filter.attackTime = value;
+	}
+
+	setFilterReleaseTime(value: number) {
+		this.filter.releaseTime = value;
 	}
 
 	setFilterQ(value: number) {

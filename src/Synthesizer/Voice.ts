@@ -14,9 +14,11 @@ export class Voice {
 		this.dco = new DCO(context);
 		this.dca = new DCA(context);
 		this.envelopeFilter = new EnvelopeFilter(context);
-		this.dco.connect(this.dca);
+		this.dco.connect(this.envelopeFilter.filter);
 
-		this.dca.connect(this.envelopeFilter.filter);
+		this.envelopeFilter.connect(this.dca);
+
+		// this.dca.connect(this.envelopeFilter.filter);
 
 		//Configure the Oscillator and the Amplifier
 		this.setWaveform(voiceData.osc.type);
@@ -32,6 +34,7 @@ export class Voice {
 		this.setVibratoType(voiceData.modulation.vibratoType);
 		this.setAttackTime(voiceData.envelope.attack);
 		this.setReleaseTime(voiceData.envelope.release);
+
 		this.setFilterType(voiceData.filter.type);
 		this.setFilterStartFreq(voiceData.filter.startFreq);
 		this.setFilterEndFreq(voiceData.filter.endFreq);
@@ -55,7 +58,7 @@ export class Voice {
 	}
 
 	connect(destination: AudioNode) {
-		this.envelopeFilter.connect(destination);
+		this.dca.connect(destination);
 	}
 
 	start(time: number) {

@@ -241,8 +241,20 @@ export class Synth {
 		this.noiseData.envelope.release = value;
 	}
 
-	setNoiseFilterFreq(value: number) {
-		this.noiseData.filter.frequency = value;
+	setNoiseFilterStartFreq(value: number) {
+		this.noiseData.filter.startFreq = value;
+	}
+
+	setNoiseFilterEndFreq(value: number) {
+		this.noiseData.filter.endFreq = value;
+	}
+
+	setNoiseFilterAttackTime(value: number) {
+		this.noiseData.filter.attackTime = value;
+	}
+
+	setNoiseFilterReleaseTime(value: number) {
+		this.noiseData.filter.releaseTime = value;
 	}
 
 	setNoiseFilterQ(value: number) {

@@ -159,7 +159,7 @@ const Oscillator = ({ id, osc, label }: OscillatorProps) => {
 							setAllFilterStartFreq(value);
 							return;
 						}
-						osc.setFilterStartFreq;
+						osc.setFilterStartFreq(value);
 					}}
 					label="START"
 					value={osc.filterStartFreq.value}
@@ -173,7 +173,7 @@ const Oscillator = ({ id, osc, label }: OscillatorProps) => {
 							setAllFilterEndFreq(value);
 							return;
 						}
-						osc.setFilterEndFreq;
+						osc.setFilterEndFreq(value);
 					}}
 					label="MÅL"
 					value={osc.filterEndFreq.value}
@@ -187,9 +187,9 @@ const Oscillator = ({ id, osc, label }: OscillatorProps) => {
 							setAllFilterQ(value);
 							return;
 						}
-						osc.setFilterQ;
+						osc.setFilterQ(value);
 					}}
-					label="Q"
+					label="TOPP"
 					value={osc.filterQ.value}
 				/>
 
@@ -201,7 +201,7 @@ const Oscillator = ({ id, osc, label }: OscillatorProps) => {
 							setAllFilterAttackTime(value);
 							return;
 						}
-						osc.setFilterAttackTime;
+						osc.setFilterAttackTime(value);
 					}}
 					label="TID"
 					value={osc.filterAttackTime.value}
@@ -215,7 +215,7 @@ const Oscillator = ({ id, osc, label }: OscillatorProps) => {
 							setAllFilterReleaseTime(value);
 							return;
 						}
-						osc.setFilterReleaseTime;
+						osc.setFilterReleaseTime(value);
 					}}
 					label="SLÄPP"
 					value={osc.filterReleaseTime.value}
