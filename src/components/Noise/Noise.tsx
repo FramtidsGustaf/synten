@@ -40,7 +40,7 @@ const Noise = () => {
 			</Row>
 
 			<VerticalSpace h={theme.sm} />
-			<h3>FILTER</h3>
+			<h3>FÖRÄNDRINGSFILTER</h3>
 			<VerticalSpace h={theme.xs} />
 			<Group
 				id="noise"
@@ -50,14 +50,22 @@ const Noise = () => {
 				}
 				value={noise.noiseFilterType.value}
 			/>
-			<VerticalSpace h={theme.sm} />
+			<VerticalSpace h={theme.xs} />
 			<Row>
 				<Knob
-					label="GRÄNS"
+					label="START"
 					min={0}
-					max={3000}
-					onChange={noise.setNoiseFilterFreq}
-					value={noise.noiseFilterFreq.value}
+					max={20000}
+					onChange={noise.setNoiseFilterStartFreq}
+					value={noise.noiseFilterStartFreq.value}
+				/>
+
+				<Knob
+					label="MÅL"
+					min={0}
+					max={20000}
+					onChange={noise.setNoiseFilterEndFreq}
+					value={noise.noiseFilterEndFreq.value}
 				/>
 				<Knob
 					label="TOPP"
@@ -65,6 +73,22 @@ const Noise = () => {
 					max={10}
 					onChange={noise.setNoiseFilterQ}
 					value={noise.noiseFilterQ.value}
+				/>
+
+				<Knob
+					label="TID"
+					min={0}
+					max={10}
+					onChange={noise.setNoiseFilterAttackTime}
+					value={noise.noiseFilterAttackTime.value}
+				/>
+
+				<Knob
+					label="SLÄPP"
+					min={0}
+					max={10}
+					onChange={noise.setNoiseFilterReleaseTime}
+					value={noise.noiseFilterReleaseTime.value}
 				/>
 			</Row>
 		</ModuleWrapper>

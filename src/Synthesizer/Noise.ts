@@ -1,4 +1,5 @@
 import { DCA } from "./DCA";
+import { EnvelopeFilter } from "./EnvelopeFilter";
 import { NoiseData } from "./NoiseData";
 
 export class Noise {
@@ -7,7 +8,7 @@ export class Noise {
 	private output: Float32Array;
 	private noise: AudioBufferSourceNode;
 	private dca: DCA;
-	private filter: BiquadFilterNode;
+	private envelopeFilter: EnvelopeFilter;
 
 	constructor(context: AudioContext, noiseData: NoiseData) {
 		this.buffersize = 2 * context.sampleRate;
@@ -31,19 +32,26 @@ export class Noise {
 		this.setVolume(noiseData.amp.volume);
 		this.setAttack(noiseData.envelope.attack);
 		this.setRelease(noiseData.envelope.release);
-		this.dca.attack();
 
-		this.filter = context.createBiquadFilter();
-		this.filter.type = noiseData.filter.type;
-		this.filter.frequency.value = noiseData.filter.frequency;
-		this.filter.Q.value = noiseData.filter.Q;
-		this.noise.start(context.currentTime);
-		this.noise.connect(this.filter);
-		this.filter.connect(this.dca);
+		this.envelopeFilter = new EnvelopeFilter(context);
+		this.setFilterType(noiseData.filter.type);
+		this.setFilterStartFreq(noiseData.filter.startFreq);
+		this.setFilterEndFreq(noiseData.filter.endFreq);
+		this.setFilterAttackTime(noiseData.filter.attackTime);
+		this.setFilterReleaseTime(noiseData.filter.releaseTime);
+		this.setFilterQ(noiseData.filter.Q);
+
+		// this.noise.start(context.currentTime);
+		this.noise.connect(this.envelopeFilter.filter);
+		this.envelopeFilter.connect(this.dca);
+
+		this.start(context.currentTime);
 	}
 
 	start(time: number) {
+		this.dca.attack();
 		this.noise.start(time);
+		this.envelopeFilter.start();
 	}
 
 	stop(time: number) {
@@ -70,20 +78,32 @@ export class Noise {
 		this.dca.setVolume(value);
 	}
 
-	setNoiseFilterAmount(value: number) {
-		this.filter.frequency.value = value;
+	setFilterType(type: BiquadFilterType) {
+		this.envelopeFilter.setFilterType(type);
 	}
 
-	setNoiseFilterType(type: BiquadFilterType) {
-		this.filter.type = type;
+	setFilterStartFreq(value: number) {
+		this.envelopeFilter.setStartFreq(value);
 	}
 
-	setNoiseFilterQ(value: number) {
-		this.filter.Q.value = value;
+	setFilterEndFreq(value: number) {
+		this.envelopeFilter.setEndFreq(value);
+	}
+
+	setFilterAttackTime(value: number) {
+		this.envelopeFilter.setAttackTime(value);
+	}
+
+	setFilterReleaseTime(value: number) {
+		this.envelopeFilter.setReleaseTime(value);
+	}
+
+	setFilterQ(value: number) {
+		this.envelopeFilter.setFilterQ(value);
 	}
 
 	disconnect() {
 		this.dca.disconnect();
-		this.filter.disconnect();
+		this.envelopeFilter.disconnect();
 	}
 }

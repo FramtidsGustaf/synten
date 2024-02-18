@@ -5,7 +5,10 @@ export const noiseVolume: Signal<number> = signal(0);
 export const noiseAttack: Signal<number> = signal(0);
 export const noiseRelease: Signal<number> = signal(0);
 export const noiseFilterType: Signal<BiquadFilterType> = signal("lowpass");
-export const noiseFilterFreq: Signal<number> = signal(0);
+export const noiseFilterStartFreq: Signal<number> = signal(0);
+export const noiseFilterEndFreq: Signal<number> = signal(0);
+export const noiseFilterAttackTime: Signal<number> = signal(0);
+export const noiseFilterReleaseTime: Signal<number> = signal(0);
 export const noiseFilterQ: Signal<number> = signal(0);
 
 export const setNoiseVolume = (n: number) => {
@@ -24,8 +27,20 @@ export const setNoiseFilterType = (f: BiquadFilterType) => {
 	noiseFilterType.value = f;
 };
 
-export const setNoiseFilterFreq = (n: number) => {
-	noiseFilterFreq.value = n;
+export const setNoiseFilterStartFreq = (n: number) => {
+	noiseFilterStartFreq.value = n;
+};
+
+export const setNoiseFilterEndFreq = (n: number) => {
+	noiseFilterEndFreq.value = n;
+};
+
+export const setNoiseFilterAttackTime = (n: number) => {
+	noiseFilterAttackTime.value = n;
+};
+
+export const setNoiseFilterReleaseTime = (n: number) => {
+	noiseFilterReleaseTime.value = n;
 };
 
 export const setNoiseFilterQ = (n: number) => {
@@ -54,7 +69,22 @@ effect(() => {
 
 effect(() => {
 	if (!synth.value) return;
-	synth.value.setNoiseFilterFreq(noiseFilterFreq.value);
+	synth.value.setNoiseFilterStartFreq(noiseFilterStartFreq.value);
+});
+
+effect(() => {
+	if (!synth.value) return;
+	synth.value.setNoiseFilterEndFreq(noiseFilterEndFreq.value);
+});
+
+effect(() => {
+	if (!synth.value) return;
+	synth.value.setNoiseFilterAttackTime(noiseFilterAttackTime.value);
+});
+
+effect(() => {
+	if (!synth.value) return;
+	synth.value.setNoiseFilterReleaseTime(noiseFilterReleaseTime.value);
 });
 
 effect(() => {
