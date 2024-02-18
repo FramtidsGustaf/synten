@@ -27,6 +27,10 @@ export const OscStore = (oscNumber: number) => {
 		detune.value = n;
 	};
 
+	const tune = () => {
+		detune.value = 0;
+	};
+
 	const setTranspositionMultiplier = (n: number) => {
 		transpositionMultiplier.value = n;
 	};
@@ -199,6 +203,7 @@ export const OscStore = (oscNumber: number) => {
 		setFilterAttackTime,
 		setFilterReleaseTime,
 		setFilterQ,
+		tune,
 	};
 };
 
