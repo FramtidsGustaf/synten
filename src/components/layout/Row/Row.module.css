@@ -4,3 +4,8 @@
 	flex-wrap: wrap;
 	align-items: center;
 }
+
+.rowSpaceBetween {
+	composes: row;
+	justify-content: space-between;
+}

@@ -1,13 +1,26 @@
 import { useTheme } from "../../hooks/useTheme";
-import { OscStore } from "../../store/Osc.store";
+
+import {
+	OscStore,
+	isSynced,
+	setAllFilterAttackTime,
+	setAllFilterEndFreq,
+	setAllFilterQ,
+	setAllFilterReleaseTime,
+	setAllFilterStartFreq,
+	setAllFilterType,
+	setSynced,
+} from "../../store/Osc.store";
 import { ModuleWrapper } from "../layout/ModuleWrapper";
 import VerticalSpace from "../layout/VerticalSpace/VerticalSpace";
 import { Group } from "../ui/Group";
-import { waveforms } from "../../utils/waveforms";
-import { filterVariants } from "../../utils/filterVariants";
 import { Knob } from "../ui/Knob";
 import Row from "../layout/Row/Row";
 import { Button } from "../ui/Button";
+import { Switch } from "../ui/Switch";
+
+import { waveforms } from "../../utils/waveforms";
+import { filterVariants } from "../../utils/filterVariants";
 
 interface OscillatorProps {
 	id: string;
@@ -110,11 +123,29 @@ const Oscillator = ({ id, osc, label }: OscillatorProps) => {
 				/>
 			</Row>
 			<VerticalSpace h={theme.xs} />
-			<h3>FÖRÄNDRINGSFILTER</h3>
+			<Row spacebetween>
+				<h3>FÖRÄNDRINGSFILTER</h3>
+
+				{id === "oscillator-1" ? (
+					<Row>
+						<p>SYNKA FILTER</p>
+						<Switch
+							checked={isSynced.value}
+							onChange={(e) => setSynced(e.target.checked)}
+						/>
+					</Row>
+				) : null}
+			</Row>
 			<VerticalSpace h={theme.xs} />
 			<Group
 				data={filterVariants}
-				onChange={(e) => osc.setFilterType(e.target.value as BiquadFilterType)}
+				onChange={(e) => {
+					if (isSynced.value) {
+						setAllFilterType(e.target.value as BiquadFilterType);
+						return;
+					}
+					osc.setFilterType(e.target.value as BiquadFilterType);
+				}}
 				value={osc.filterType.value}
 				id={id + "filter"}
 			/>
@@ -123,7 +154,13 @@ const Oscillator = ({ id, osc, label }: OscillatorProps) => {
 				<Knob
 					min={0}
 					max={20000}
-					onChange={osc.setFilterStartFreq}
+					onChange={(value) => {
+						if (isSynced.value) {
+							setAllFilterStartFreq(value);
+							return;
+						}
+						osc.setFilterStartFreq;
+					}}
 					label="START"
 					value={osc.filterStartFreq.value}
 				/>
@@ -131,7 +168,13 @@ const Oscillator = ({ id, osc, label }: OscillatorProps) => {
 				<Knob
 					min={0}
 					max={20000}
-					onChange={osc.setFilterEndFreq}
+					onChange={(value) => {
+						if (isSynced.value) {
+							setAllFilterEndFreq(value);
+							return;
+						}
+						osc.setFilterEndFreq;
+					}}
 					label="MÅL"
 					value={osc.filterEndFreq.value}
 				/>
@@ -139,7 +182,13 @@ const Oscillator = ({ id, osc, label }: OscillatorProps) => {
 				<Knob
 					min={0}
 					max={10}
-					onChange={osc.setFilterQ}
+					onChange={(value) => {
+						if (isSynced.value) {
+							setAllFilterQ(value);
+							return;
+						}
+						osc.setFilterQ;
+					}}
 					label="Q"
 					value={osc.filterQ.value}
 				/>
@@ -147,7 +196,13 @@ const Oscillator = ({ id, osc, label }: OscillatorProps) => {
 				<Knob
 					min={0}
 					max={10}
-					onChange={osc.setFilterAttackTime}
+					onChange={(value) => {
+						if (isSynced.value) {
+							setAllFilterAttackTime(value);
+							return;
+						}
+						osc.setFilterAttackTime;
+					}}
 					label="TID"
 					value={osc.filterAttackTime.value}
 				/>
@@ -155,7 +210,13 @@ const Oscillator = ({ id, osc, label }: OscillatorProps) => {
 				<Knob
 					min={0}
 					max={10}
-					onChange={osc.setFilterReleaseTime}
+					onChange={(value) => {
+						if (isSynced.value) {
+							setAllFilterReleaseTime(value);
+							return;
+						}
+						osc.setFilterReleaseTime;
+					}}
 					label="SLÄPP"
 					value={osc.filterReleaseTime.value}
 				/>
