@@ -1,6 +1,12 @@
 import { Signal, effect, signal } from "@preact/signals-react";
 import { synth } from "./Synth.store";
 
+export const isSynced: Signal<boolean> = signal(false);
+
+export const setSynced = (b: boolean) => {
+	isSynced.value = b;
+};
+
 export const OscStore = (oscNumber: number) => {
 	const waveform: Signal<OscillatorType> = signal("sine");
 	const detune: Signal<number> = signal(0);
@@ -210,3 +216,39 @@ export const OscStore = (oscNumber: number) => {
 export const oscOne = OscStore(0);
 export const oscTwo = OscStore(1);
 export const oscThree = OscStore(2);
+
+export const setAllFilterType = (o: BiquadFilterType) => {
+	oscOne.setFilterType(o);
+	oscTwo.setFilterType(o);
+	oscThree.setFilterType(o);
+};
+
+export const setAllFilterStartFreq = (n: number) => {
+	oscOne.setFilterStartFreq(n);
+	oscTwo.setFilterStartFreq(n);
+	oscThree.setFilterStartFreq(n);
+};
+
+export const setAllFilterEndFreq = (n: number) => {
+	oscOne.setFilterEndFreq(n);
+	oscTwo.setFilterEndFreq(n);
+	oscThree.setFilterEndFreq(n);
+};
+
+export const setAllFilterAttackTime = (n: number) => {
+	oscOne.setFilterAttackTime(n);
+	oscTwo.setFilterAttackTime(n);
+	oscThree.setFilterAttackTime(n);
+};
+
+export const setAllFilterReleaseTime = (n: number) => {
+	oscOne.setFilterReleaseTime(n);
+	oscTwo.setFilterReleaseTime(n);
+	oscThree.setFilterReleaseTime(n);
+};
+
+export const setAllFilterQ = (n: number) => {
+	oscOne.setFilterQ(n);
+	oscTwo.setFilterQ(n);
+	oscThree.setFilterQ(n);
+};
