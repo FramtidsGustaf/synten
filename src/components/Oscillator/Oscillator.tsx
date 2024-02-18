@@ -7,6 +7,7 @@ import { waveforms } from "../../utils/waveforms";
 import { filterVariants } from "../../utils/filterVariants";
 import { Knob } from "../ui/Knob";
 import Row from "../layout/Row/Row";
+import { Button } from "../ui/Button";
 
 interface OscillatorProps {
 	id: string;
@@ -39,13 +40,16 @@ const Oscillator = ({ id, osc, label }: OscillatorProps) => {
 				value={osc.transpositionMultiplier.value}
 				onChange={(e) => osc.setTranspositionMultiplier(e.target.value)}
 			/>
-			<Knob
-				min={-100}
-				max={100}
-				onChange={osc.setDetune}
-				label="OSTÄM"
-				value={osc.detune.value}
-			/>
+			<Row>
+				<Knob
+					min={-100}
+					max={100}
+					onChange={osc.setDetune}
+					label="OSTÄM"
+					value={osc.detune.value}
+				/>
+				<Button onClick={osc.tune}>STÄM</Button>
+			</Row>
 			<h3>FÖRSTÄRKARE</h3>
 			<Row>
 				<Knob

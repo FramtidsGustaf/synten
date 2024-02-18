@@ -2,4 +2,5 @@
 	display: flex;
 	gap: var(--xs);
 	flex-wrap: wrap;
+	align-items: center;
 }
