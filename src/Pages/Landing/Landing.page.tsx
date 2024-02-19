@@ -2,12 +2,13 @@ import { useLocation } from "wouter";
 import { synth } from "../../store/Synth.store";
 import { Synth } from "../../Synthesizer/Synth";
 
-import syntOnButton from "../../assets/images/synt-on-button.svg";
+import syntOnButton from "../../../public/images/synt-on-button.svg";
 
 import classes from "./LandingPage.module.css";
 
 const LandingPage = () => {
 	const location = useLocation();
+
 	const handleClick = () => {
 		synth.value = new Synth();
 		location[1]("/synt");
