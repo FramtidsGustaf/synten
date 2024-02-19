@@ -2,15 +2,19 @@ import * as noise from "../store/Noise.store";
 import * as delay from "../store/Delay.store";
 import * as reverb from "../store/Reverb.store";
 import { oscOne, oscThree, oscTwo } from "../store/Osc.store";
-import { allSavedPresetsNames } from "../store/Saved.store";
+import { setAllSavedPresetsNames } from "../store/Saved.store";
+import {
+	setIsNotificationOpen,
+	setNotificationMessage,
+} from "../store/Notification.store";
 
 export const getSynth = (name: string) => {
 	const request = window.indexedDB.open("synth", 1);
 
 	request.onsuccess = () => {
 		const db = request.result;
-		const transaction = db.transaction("synth", "readonly");
-		const synthStore = transaction.objectStore("synth");
+		const transaction = db.transaction("presets", "readonly");
+		const synthStore = transaction.objectStore("presets");
 		const synth = synthStore.get(name);
 
 		synth.onsuccess = () => {
@@ -62,9 +66,13 @@ export const getSynth = (name: string) => {
 			oscThree.setFilterReleaseTime(s.oscThree.filterRelease);
 
 			noise.setNoiseAttack(s.noise.noiseAttack);
-			noise.setNoiseFilterFreq(s.noise.noiseFilterFreq);
+			noise.setNoiseFilterStartFreq(s.noise.noiseFilterStartFreq);
+			noise.setNoiseFilterEndFreq(s.noise.noiseFilterEndFreq);
 			noise.setNoiseFilterQ(s.noise.noiseFilterQ);
 			noise.setNoiseFilterType(s.noise.noiseFilterType);
+			noise.setNoiseFilterAttackTime(s.noise.noiseFilterAttackTime);
+			noise.setNoiseFilterReleaseTime(s.noise.noiseFilterReleaseTime);
+
 			noise.setNoiseRelease(s.noise.noiseRelease);
 			noise.setNoiseVolume(s.noise.noiseVolume);
 
@@ -150,7 +158,10 @@ export const saveSynth = (name: string) => {
 			noiseAttack: noise.noiseAttack.value,
 			noiseRelease: noise.noiseRelease.value,
 			noiseFilterType: noise.noiseFilterType.value,
-			noiseFilterFreq: noise.noiseFilterFreq.value,
+			noiseFilterStartFreq: noise.noiseFilterStartFreq.value,
+			noiseFilterEndFreq: noise.noiseFilterEndFreq.value,
+			noiseFilterReleaseTime: noise.noiseFilterReleaseTime.value,
+			noiseFilterAttackTime: noise.noiseFilterAttackTime.value,
 			noiseFilterQ: noise.noiseFilterQ.value,
 		},
 		delay: {
@@ -187,12 +198,13 @@ export const saveSynth = (name: string) => {
 
 	request.onsuccess = () => {
 		const db = request.result;
-		console.log(db);
 
 		const transaction = db.transaction("presets", "readwrite");
 		const synthStore = transaction.objectStore("presets");
 
 		synthStore.put({ id: name, synth });
+		setNotificationMessage("Förinställningen är sparad!");
+		setIsNotificationOpen(true);
 	};
 };
 
@@ -201,10 +213,16 @@ export const deleteSynth = (name: string) => {
 
 	request.onsuccess = () => {
 		const db = request.result;
-		const transaction = db.transaction("synth", "readwrite");
-		const synthStore = transaction.objectStore("synth");
+		const transaction = db.transaction("presets", "readwrite");
+		const synthStore = transaction.objectStore("presets");
 
 		synthStore.delete(name);
+
+		transaction.oncomplete = () => {
+			getAllNames();
+			setNotificationMessage("Förinställningen är borttagen!");
+			setIsNotificationOpen(true);
+		};
 	};
 };
 
@@ -218,7 +236,7 @@ export const getAllNames = () => {
 		const names = synthStore.getAllKeys();
 
 		names.onsuccess = () => {
-			allSavedPresetsNames.value = names.result;
+			setAllSavedPresetsNames(names.result);
 		};
 	};
 };

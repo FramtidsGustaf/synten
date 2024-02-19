@@ -29,9 +29,9 @@
 	right: 0;
 	bottom: 0;
 	background-color: var(--dark);
-	-webkit-transition: 0.2s;
+	-webkit-transition: var(--transition-speed);
 	border-radius: 34px;
-	transition: 0.2s;
+	transition: var(--transition-speed);
 
 	&:before {
 		position: absolute;
@@ -41,8 +41,8 @@
 		left: 2px;
 		bottom: 2px;
 		background-color: var(--light);
-		-webkit-transition: 0.2s;
-		transition: 0.2s;
+		-webkit-transition: var(--transition-speed);
+		transition: var(--transition-speed);
 		border-radius: 50%;
 	}
 }

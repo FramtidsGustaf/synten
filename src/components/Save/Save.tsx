@@ -5,53 +5,82 @@ import floppy from "../../assets/images/synt-floppy.svg";
 import close from "../../assets/images/synt-close.svg";
 import ok from "../../assets/images/synt-ok.svg";
 
-import classes from "./Save.module.css";
 import { saveSynth } from "../../db/queries";
+import { useConfirm } from "../../hooks/useConfirm";
+
+import classes from "./Save.module.css";
+import { FormEventHandler } from "react";
 
 const isSaving: Signal<boolean> = signal(false);
 const settingsName: Signal<string> = signal("");
 
 const Save = () => {
+	const confirm = useConfirm();
+
 	const save = () => {
 		saveSynth(settingsName.value);
 		settingsName.value = "";
 		isSaving.value = false;
 	};
+
+	const handleSave: FormEventHandler = (e) => {
+		e.preventDefault();
+		if (!settingsName.value) return;
+		confirm({
+			message: "Vill du spara denna förinställning?",
+			description: `Förinställningen kommer att sparas på din enhet \noch kommer finnas kvar tills du tar bort den.`,
+			onConfirm: () => {
+				save();
+				isSaving.value = false;
+			},
+		});
+	};
+
+	const handleCancel = () => {
+		isSaving.value = false;
+		settingsName.value = "";
+	};
+
 	return (
 		<>
 			{synth.value ? (
 				<>
-					{isSaving.value ? (
-						<div className={classes.form}>
-							<input
-								placeholder="NAMN"
-								className={classes.input}
-								autoFocus
-								onChange={(e) => {
-									settingsName.value = e.target.value;
-								}}
-								value={settingsName.value}
-							/>
-							<img
-								src={close}
-								alt="close"
-								className={classes.close}
-								onClick={() => {
-									isSaving.value = false;
-								}}
-							/>
-							<img src={ok} alt="save" className={classes.ok} onClick={save} />
-						</div>
-					) : (
+					<form
+						className={`${classes.form} ${
+							isSaving.value ? classes.formOpen : ""
+						}`}
+						onSubmit={handleSave}
+					>
+						<input
+							placeholder="NAMN"
+							className={classes.input}
+							autoFocus
+							onChange={(e) => {
+								settingsName.value = e.target.value;
+							}}
+							value={settingsName.value}
+						/>
 						<img
-							src={floppy}
-							alt="save"
-							className={classes.floppy}
+							src={close}
+							alt="cancel"
+							className={classes.close}
 							onClick={() => {
-								isSaving.value = true;
+								handleCancel();
 							}}
 						/>
-					)}
+						<input type="image" src={ok} className={classes.ok} alt="save" />
+					</form>
+
+					<img
+						src={floppy}
+						alt="save"
+						className={`${classes.floppy} ${
+							isSaving.value ? classes.floppyHidden : ""
+						}`}
+						onClick={() => {
+							isSaving.value = true;
+						}}
+					/>
 				</>
 			) : null}
 		</>

@@ -1,0 +1,17 @@
+@keyframes spin {
+	from {
+		rotate: 0deg;
+	}
+	to {
+		rotate: 360deg;
+	}
+}
+
+.loader {
+	position: absolute;
+	width: 20rem;
+	top: calc(50% - 10rem);
+	left: calc(50% - 10rem);
+	animation: 2s linear infinite spin;
+	animation-origin: center;
+}

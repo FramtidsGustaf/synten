@@ -8,6 +8,8 @@
 	--light: #bacacf;
 	--dark: #2a3133;
 
+	--transition-speed: 0.1s;
+
 	--xs: 0.8rem;
 	--sm: 1.6rem;
 	--md: 2.2rem;

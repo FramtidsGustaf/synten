@@ -1,13 +1,20 @@
 export const useTheme = () => {
+	const getCSSVariable = (name: string) => {
+		const root = document.documentElement;
+		return getComputedStyle(root).getPropertyValue(name);
+	};
+
 	const theme = {
-		xs: "0.8rem",
-		sm: "1.6rem",
-		md: "2.2rem",
-		lg: "3rem",
-		xl: "3.8rem",
-		bgColor: "#6a8b94",
-		dark: "#2a3133",
-		light: "#bacacf",
+		xs: getCSSVariable("--xs"),
+		sm: getCSSVariable("--sm"),
+		md: getCSSVariable("--md"),
+		lg: getCSSVariable("--lg"),
+		xl: getCSSVariable("--xl"),
+		bgColor: getCSSVariable("--bg-color"),
+		bgColorLight: getCSSVariable("--bg-color-light"),
+		bgColorDark: getCSSVariable("--bg-color-dark"),
+		dark: getCSSVariable("--dark"),
+		light: getCSSVariable("--light"),
 	};
 
 	return theme;

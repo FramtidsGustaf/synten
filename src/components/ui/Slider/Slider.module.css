@@ -15,7 +15,7 @@
 		height: var(--sm);
 		background: var(--bg-color);
 		border-radius: 50%;
-		transition: all 0.1s ease-in-out;
+		transition: all var(--transition-speed) ease-in-out;
 
 		&:focus {
 			background: var(--light);

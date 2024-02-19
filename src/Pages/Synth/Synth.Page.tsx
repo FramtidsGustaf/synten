@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useLocation } from "wouter";
 
 import { Delay } from "../../components/Delay";
@@ -6,6 +6,9 @@ import { Oscillator } from "../../components/Oscillator";
 import { Reverb } from "../../components/Reverb";
 import { Noise } from "../../components/Noise";
 import { VerticalSpace } from "../../components/layout/VerticalSpace";
+import { Drawer } from "../../components/ui/Drawer/";
+import DrawerContent from "./DrawerContent/DrawerContent";
+import { Loader } from "../../components/Loader";
 
 import { oscOne, oscTwo, oscThree } from "../../store/Osc.store";
 import { synth } from "../../store/Synth.store";
@@ -32,18 +35,8 @@ const SynthPage = () => {
 		}
 	}, [synth.value]);
 
-	const play = () => {
-		if (!synth.value) return;
-		synth.value.play(200);
-	};
-
-	const stop = () => {
-		if (!synth.value) return;
-		synth.value.stop(200);
-	};
-
 	return (
-		<>
+		<Suspense fallback={<Loader />}>
 			<div className={classes.modules}>
 				<div className={classes.firstRow}>
 					<div className={classes.oscs}>
@@ -63,12 +56,12 @@ const SynthPage = () => {
 					<Delay />
 					<Reverb />
 				</div>
-				<button onMouseDown={play} onMouseUp={stop}>
-					Spela
-				</button>
 			</div>
+			<Drawer>
+				<DrawerContent />
+			</Drawer>
 			<VerticalSpace h={theme.xl} />
-		</>
+		</Suspense>
 	);
 };
 

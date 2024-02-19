@@ -5,7 +5,7 @@
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	transition: width 0.2s;
+	transition: width var(--transition-speed) ease-out;
 
 	&:hover {
 		width: 110px;

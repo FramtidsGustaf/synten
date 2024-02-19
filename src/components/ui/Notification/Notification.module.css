@@ -1,0 +1,33 @@
+.notification {
+	position: fixed;
+	bottom: var(--md);
+	left: var(--md);
+	z-index: 1000;
+	background-color: var(--dark);
+	height: 6rem;
+	width: 32rem;
+	border-radius: 5px;
+	padding: var(--sm);
+	display: flex;
+	align-items: center;
+	gap: var(--sm);
+	transform: translateX(calc(-100% - var(--md)));
+	transition: transform var(--transition-speed) ease-out;
+	color: var(--light);
+	overflow: hidden;
+
+	&.notificationOpen {
+		transform: translateX(0);
+	}
+}
+
+.message {
+	font-size: var(--sm);
+}
+
+.side {
+	height: 3.5rem;
+	width: 1rem;
+	border-radius: 5px;
+	background-color: var(--light);
+}

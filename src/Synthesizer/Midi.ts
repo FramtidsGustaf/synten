@@ -14,8 +14,8 @@ export class Midi {
 		const inputs = midi.inputs.values();
 
 		for (const input of inputs) {
-			//This is not an actual error, but a TypeScript error
-			input.onmidimessage = (message: MIDIMessageEvent) => {
+			input.onmidimessage = (event: Event) => {
+				const message = event as MIDIMessageEvent;
 				const [command, note] = message.data;
 
 				switch (command) {
