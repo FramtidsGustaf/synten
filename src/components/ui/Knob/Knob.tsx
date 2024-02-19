@@ -8,7 +8,7 @@ import {
 
 import classes from "./Knob.module.css";
 
-import knob from "../../../images/knob.svg";
+const knob = new URL("../../../images/knob.svg", import.meta.url).href;
 
 interface KnobProps {
 	value: number;

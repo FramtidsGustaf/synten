@@ -2,7 +2,8 @@ import { useLocation } from "wouter";
 import { synth } from "../../store/Synth.store";
 import { Synth } from "../../Synthesizer/Synth";
 
-import syntOnButton from "../../images/synt-on-button.svg";
+const syntOnButton = new URL("../../images/synt-on-button.svg", import.meta.url)
+	.href;
 
 import classes from "./LandingPage.module.css";
 
