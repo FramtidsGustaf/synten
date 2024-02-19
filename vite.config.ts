@@ -5,7 +5,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig(({ mode }) => {
 	console.log(mode);
 	return {
-		base: mode === "development" ? "" : "/synten/",
+		base: mode === "development" ? "" : "/synten",
 		plugins: [
 			react({
 				babel: { plugins: [["module:@preact/signals-react-transform"]] },
