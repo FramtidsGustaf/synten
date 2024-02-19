@@ -4,8 +4,7 @@ import { VerticalSpace } from "../../../components/layout/VerticalSpace";
 import { allSavedPresetsNames } from "../../../store/Saved.store";
 import { setIsDrawerOpen } from "../../../store/Drawer.store";
 
-const trash = new URL("../../../assets/images/synt-trash.svg", import.meta.url)
-	.href;
+import trash from "../../../assets/images/synt-trash.svg";
 
 import { useTheme } from "../../../hooks/useTheme";
 import { useConfirm } from "../../../hooks/useConfirm";

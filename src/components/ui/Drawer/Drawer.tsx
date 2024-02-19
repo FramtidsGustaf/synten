@@ -4,8 +4,7 @@ import { setIsDrawerOpen, isDrawerOpen } from "../../../store/Drawer.store";
 
 import classes from "./Drawer.module.css";
 
-const chevron = new URL("../../../assets/images/chevron.svg", import.meta.url)
-	.href;
+import chevron from "../../../assets/images/synt-chevron.svg";
 
 interface DrawerProps {
 	children: ReactNode;
