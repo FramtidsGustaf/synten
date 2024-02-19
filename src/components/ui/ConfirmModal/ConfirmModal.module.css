@@ -1,0 +1,60 @@
+.modalWrapper {
+	--modal-width: fit-content;
+}
+
+.modal {
+	visibility: hidden;
+	opacity: 0;
+	width: var(--modal-width);
+	background-color: var(--bg-color);
+	color: var(--light);
+	position: absolute;
+	top: 30%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 5px;
+	z-index: 1002;
+	padding: var(--md);
+	transition: visibility var(--transition-speed) ease-out,
+		opacity var(--transition-speed) ease-out;
+
+	&.modalOpen {
+		visibility: visible;
+		opacity: 1;
+	}
+}
+
+.modalMessage {
+	font-size: var(--md);
+}
+
+.modalDescription {
+	font-size: var(--sm);
+}
+
+.buttons {
+	display: flex;
+	justify-content: flex-end;
+	gap: var(--md);
+}
+
+.backdrop {
+	visibility: hidden;
+	opacity: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1001;
+	pointer-events: none;
+	transition: opacity var(--transition-speed) ease-out,
+		visibility var(--transition-speed) ease-out;
+
+	&.backdropOpen {
+		visibility: visible;
+		opacity: 1;
+		pointer-events: auto;
+	}
+}
