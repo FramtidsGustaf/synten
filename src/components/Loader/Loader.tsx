@@ -1,4 +1,4 @@
-import knob from "../../../public/images/knob.svg";
+import knob from "../../images/knob.svg";
 
 import classes from "./Loader.module.css";
 

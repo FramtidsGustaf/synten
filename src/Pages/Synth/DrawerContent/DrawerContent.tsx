@@ -4,7 +4,7 @@ import { VerticalSpace } from "../../../components/layout/VerticalSpace";
 import { allSavedPresetsNames } from "../../../store/Saved.store";
 import { setIsDrawerOpen } from "../../../store/Drawer.store";
 
-import trash from "../../../../public/images/synt-trash.svg";
+import trash from "../../../images/synt-trash.svg";
 
 import { useTheme } from "../../../hooks/useTheme";
 import { useConfirm } from "../../../hooks/useConfirm";

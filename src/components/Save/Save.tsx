@@ -1,9 +1,9 @@
 import { Signal, signal } from "@preact/signals-react";
 import { synth } from "../../store/Synth.store";
 
-import floppy from "../../../public/images/synt-floppy.svg";
-import close from "../../../public/images/synt-close.svg";
-import ok from "../../../public/images/synt-on-button.svg";
+import floppy from "../../images/synt-floppy.svg";
+import close from "../../images/synt-close.svg";
+import ok from "../../images/synt-on-button.svg";
 
 import { saveSynth } from "../../db/queries";
 import { useConfirm } from "../../hooks/useConfirm";
