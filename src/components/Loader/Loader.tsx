@@ -1,4 +1,4 @@
-const knob = new URL("../../images/knob.svg", import.meta.url).href;
+const knob = new URL("../../assets/images/knob.svg", import.meta.url).href;
 
 import classes from "./Loader.module.css";
 
