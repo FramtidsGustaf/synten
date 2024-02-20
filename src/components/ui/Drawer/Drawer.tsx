@@ -4,8 +4,6 @@ import { setIsDrawerOpen, isDrawerOpen } from "../../../store/Drawer.store";
 
 import classes from "./Drawer.module.css";
 
-import chevron from "/images/synt-chevron.svg?url";
-
 interface DrawerProps {
 	children: ReactNode;
 }
@@ -70,7 +68,7 @@ const Drawer = ({ children }: DrawerProps) => {
 				}}
 			>
 				<img
-					src={chevron}
+					src="/images/synt-chevron.svg?url"
 					alt="Stäng"
 					className={`${classes.chevron} ${
 						isDrawerOpen.value ? classes.chevronOpen : ""

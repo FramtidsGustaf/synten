@@ -1,10 +1,6 @@
 import { Signal, signal } from "@preact/signals-react";
 import { synth } from "../../store/Synth.store";
 
-import close from "/images/synt-close.svg?url";
-import ok from "/images/synt-on-button.svg?url";
-import floppy from "/images/synt-floppy.svg?url";
-
 import { saveSynth } from "../../db/queries";
 import { useConfirm } from "../../hooks/useConfirm";
 
@@ -61,18 +57,23 @@ const Save = () => {
 							value={settingsName.value}
 						/>
 						<img
-							src={close}
+							src="/images/synt-close.svg?url"
 							alt="cancel"
 							className={classes.close}
 							onClick={() => {
 								handleCancel();
 							}}
 						/>
-						<input type="image" src={ok} className={classes.ok} alt="save" />
+						<input
+							type="image"
+							src="/images/synt-on-button.svg?url"
+							className={classes.ok}
+							alt="save"
+						/>
 					</form>
 
 					<img
-						src={floppy}
+						src="/images/synt-floppy.svg?url"
 						alt="save"
 						className={`${classes.floppy} ${
 							isSaving.value ? classes.floppyHidden : ""

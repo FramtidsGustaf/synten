@@ -4,8 +4,6 @@ import { VerticalSpace } from "../../../components/layout/VerticalSpace";
 import { allSavedPresetsNames } from "../../../store/Saved.store";
 import { setIsDrawerOpen } from "../../../store/Drawer.store";
 
-import trash from "/images/synt-trash.svg?url";
-
 import { useTheme } from "../../../hooks/useTheme";
 import { useConfirm } from "../../../hooks/useConfirm";
 
@@ -48,7 +46,7 @@ const DrawerContent = () => {
 							{name as string}
 						</div>
 						<img
-							src={trash}
+							src="/images/synt-trash.svg?url"
 							alt="Släng"
 							className={classes.icon}
 							onClick={() => handleDelete(name as string)}
