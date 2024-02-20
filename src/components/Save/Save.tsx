@@ -57,7 +57,7 @@ const Save = () => {
 							value={settingsName.value}
 						/>
 						<img
-							src="./synt-close.svg?url"
+							src="/synt-close.svg?url"
 							alt="cancel"
 							className={classes.close}
 							onClick={() => {
@@ -66,14 +66,14 @@ const Save = () => {
 						/>
 						<input
 							type="image"
-							src="./synt-on-button.svg?url"
+							src="/synt-on-button.svg?url"
 							className={classes.ok}
 							alt="save"
 						/>
 					</form>
 
 					<img
-						src="./synt-floppy.svg?url"
+						src="/synt-floppy.svg?url"
 						alt="save"
 						className={`${classes.floppy} ${
 							isSaving.value ? classes.floppyHidden : ""
