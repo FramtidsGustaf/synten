@@ -68,7 +68,7 @@ const Drawer = ({ children }: DrawerProps) => {
 				}}
 			>
 				<img
-					src="images/synt-chevron.svg?url"
+					src="./synt-chevron.svg?url"
 					alt="Stäng"
 					className={`${classes.chevron} ${
 						isDrawerOpen.value ? classes.chevronOpen : ""

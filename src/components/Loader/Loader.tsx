@@ -3,7 +3,7 @@ import classes from "./Loader.module.css";
 const Loader = () => {
 	return (
 		<img
-			src="images/knob.svg?url"
+			src="./knob.svg?url"
 			alt="Loading..."
 			className={classes.loader}
 		/>

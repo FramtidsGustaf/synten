@@ -85,7 +85,7 @@ const Knob = ({ value, min, max, onChange, label }: KnobProps) => {
 		<div className={classes.knobWrapper}>
 			<p>{label}</p>
 			<img
-				src="images/knob.svg?url"
+				src="./knob.svg?url"
 				className={classes.knob}
 				alt="knob"
 				style={{ transform: `rotate(${rotationValue}deg)` }}
