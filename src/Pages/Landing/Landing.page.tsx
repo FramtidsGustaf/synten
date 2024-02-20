@@ -15,7 +15,7 @@ const LandingPage = () => {
 	return (
 		<div>
 			<img
-				src="/images/synt-on-button.svg?url"
+				src="images/synt-on-button.svg?url"
 				alt="Synt On Button"
 				className={classes.onButton}
 				onClick={handleClick}

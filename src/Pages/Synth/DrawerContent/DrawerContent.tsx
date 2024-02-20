@@ -46,7 +46,7 @@ const DrawerContent = () => {
 							{name as string}
 						</div>
 						<img
-							src="/images/synt-trash.svg?url"
+							src="images/synt-trash.svg?url"
 							alt="Släng"
 							className={classes.icon}
 							onClick={() => handleDelete(name as string)}
