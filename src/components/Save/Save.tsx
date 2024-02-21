@@ -66,7 +66,7 @@ const Save = () => {
 						/>
 						<input
 							type="image"
-							src="/synt-on-button.svg?url"
+							src="/synt-ok.svg?url"
 							className={classes.ok}
 							alt="save"
 						/>
