@@ -7,7 +7,12 @@ import { setIsDrawerOpen } from "../../../store/Drawer.store";
 import { useTheme } from "../../../hooks/useTheme";
 import { useConfirm } from "../../../hooks/useConfirm";
 
-import { deleteSynth, getAllNames, getSynth } from "../../../db/queries";
+import {
+	deleteSynth,
+	getAllNames,
+	getSynth,
+	// getSynthToShare,
+} from "../../../db/queries";
 
 import classes from "./DrawerContent.module.css";
 
@@ -51,6 +56,14 @@ const DrawerContent = () => {
 							className={classes.icon}
 							onClick={() => handleDelete(name as string)}
 						/>
+						{/*TBA*/}
+						{/* <button
+							onClick={() => {
+								getSynthToShare(name as string);
+							}}
+						>
+							Share
+						</button> */}
 					</li>
 				))}
 			</ul>

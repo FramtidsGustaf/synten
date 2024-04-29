@@ -8,6 +8,25 @@ import {
 	setNotificationMessage,
 } from "../store/Notification.store";
 
+export const getSynthToShare = (name: string) => {
+	const request = window.indexedDB.open("synth", 1);
+
+	request.onsuccess = () => {
+		const db = request.result;
+		const transaction = db.transaction("presets", "readonly");
+		const synthStore = transaction.objectStore("presets");
+		const synth = synthStore.get(name);
+
+		synth.onsuccess = () => {
+			const { synth: s } = synth.result;
+			const encoded = btoa(JSON.stringify(s));
+			console.log(encoded);
+
+			console.log(atob(encoded));
+		};
+	};
+};
+
 export const getSynth = (name: string) => {
 	const request = window.indexedDB.open("synth", 1);
 

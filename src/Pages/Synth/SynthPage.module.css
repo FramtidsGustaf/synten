@@ -38,3 +38,15 @@
 
 	height: fit-content;
 }
+
+.github {
+	position: fixed;
+	bottom: 10px;
+	left: 10px;
+	width: 30px;
+	cursor: pointer;
+	
+	&:hover {
+		transform: scale(1.1);
+	}
+}

@@ -60,6 +60,13 @@ const SynthPage = () => {
 			<Drawer>
 				<DrawerContent />
 			</Drawer>
+			<a href="https://github.com/FramtidsGustaf/synten">
+				<img
+					src="/github-mark.svg?url"
+					alt="github"
+					className={classes.github}
+				/>
+			</a>
 			<VerticalSpace h={theme.xl} />
 		</Suspense>
 	);
