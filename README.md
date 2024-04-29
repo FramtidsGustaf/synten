@@ -2,8 +2,6 @@
 
 Synten är en helt browserbaserad midisynt som är byggd med Web Audio Api. 
 
-Jag har inte deployat den än men om vill du testa den kan du klona repot och köra den lokalt.
-
 ## Att göra
 > - Kontakt för eventuella förslag till förbättringar (Kommer också senare ifall jag bestämmer mig för att skaffa ett domännamn)
 > - Se över koden för att bestämma vilken frekvens midimeddelanden ska ha. (Den skrevs när jag var trött och är inte helt säker på att den stämmer helt)
